@@ -93,8 +93,8 @@ set_property -dict { PACKAGE_PIN N17   IOSTANDARD LVCMOS33 } [get_ports { reset 
 
 ##Pmod Header JA
 
-set_property -dict { PACKAGE_PIN C17   IOSTANDARD LVCMOS33 } [get_ports { dataValid }]; #IO_L20N_T3_A19_15 Sch=ja[1]
-#set_property -dict { PACKAGE_PIN D18   IOSTANDARD LVCMOS33 } [get_ports { JA[2] }]; #IO_L21N_T3_DQS_A18_15 Sch=ja[2]
+set_property -dict { PACKAGE_PIN C17   IOSTANDARD LVCMOS33 } [get_ports { dValid_h }]; #IO_L20N_T3_A19_15 Sch=ja[1]
+set_property -dict { PACKAGE_PIN D18   IOSTANDARD LVCMOS33 } [get_ports { dValid_v }]; #IO_L21N_T3_DQS_A18_15 Sch=ja[2]
 #set_property -dict { PACKAGE_PIN E18   IOSTANDARD LVCMOS33 } [get_ports { JA[3] }]; #IO_L21P_T3_DQS_15 Sch=ja[3]
 #set_property -dict { PACKAGE_PIN G17   IOSTANDARD LVCMOS33 } [get_ports { JA[4] }]; #IO_L18N_T2_A23_15 Sch=ja[4]
 #set_property -dict { PACKAGE_PIN D17   IOSTANDARD LVCMOS33 } [get_ports { JA[7] }]; #IO_L16N_T2_A27_15 Sch=ja[7]
@@ -169,7 +169,7 @@ set_property -dict { PACKAGE_PIN C17   IOSTANDARD LVCMOS33 } [get_ports { dataVa
 #set_property -dict { PACKAGE_PIN D8    IOSTANDARD LVCMOS33 } [get_ports { VGA_B[3] }]; #IO_L4P_T0_35 Sch=vga_b[3]
 
 set_property -dict { PACKAGE_PIN B11   IOSTANDARD LVCMOS33 } [get_ports { hclk }]; #IO_L4P_T0_15 Sch=vga_hs
-#set_property -dict { PACKAGE_PIN B12   IOSTANDARD LVCMOS33 } [get_ports { VGA_VS }]; #IO_L3N_T0_DQS_AD1N_15 Sch=vga_vs
+set_property -dict { PACKAGE_PIN B12   IOSTANDARD LVCMOS33 } [get_ports { vclk }]; #IO_L3N_T0_DQS_AD1N_15 Sch=vga_vs
 
 
 ##Micro SD Connector
