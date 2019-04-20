@@ -15,16 +15,9 @@ logic dValid_h, dValid_v, pixelClk, locked_i;
 logic [3:0] redVal, greenVal, blueVal;
 logic [9:0] xCor, yCor;
 
-clockGen clocks(.clk_100m(clk_100m), .reset(reset), .clk_25m(pixelClk), .locked(locked_i), .hclk(hclk), .vclk(vclk), .dValid_h(dValid_h), .dValid_v(dValid_v));
+clockGen pixelClkGen(.clk_100m(clk_100m), .reset(reset), .clk_25m(pixelClk), .locked(locked_i));
+vgaClk vgaTiming(.pixelClk(pixelClk), .locked(locked_i), .hClk(hclk), .vClk(vclk), .xCor(xCor), .yCor(yCor), .hVis(dValid_h), .vVis(dValid_v));
 
-// lfsr red(.clk(pixelClk), .set_seed(~locked_i), .seed(26), .rand_out(redVal));
-// lfsr blue(.clk(pixelClk), .set_seed(~locked_i), .seed(256), .rand_out(blueVal));
-// lfsr green(.clk(pixelClk), .set_seed(~locked_i), .seed(318), .rand_out(greenVal));
-
-
-//vgaClk clock(.pixelClk(pixelClk), .locked(locked), .hClk(hClk), .vClk(vClk), .xCor(xCor), .yCor(yCor));
-
-pixelTracker xygen(.pixelClk(pixelClk), .locked(locked_i), .xCor(xCor), .yCor());
 patternGen rainbow(.pixelClk(pixelClk), .locked(locked_i), .dValid(dValid_h & dValid_v), .xCor(xCor), .yCor(yCor), .R(redVal), .G(greenVal), .B(blueVal));
 
 assign VGA_R = redVal;
