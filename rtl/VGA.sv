@@ -21,6 +21,9 @@ clockGen clocks(.clk_100m(clk_100m), .reset(reset), .clk_25m(pixelClk), .locked(
 // lfsr blue(.clk(pixelClk), .set_seed(~locked_i), .seed(256), .rand_out(blueVal));
 // lfsr green(.clk(pixelClk), .set_seed(~locked_i), .seed(318), .rand_out(greenVal));
 
+
+//vgaClk clock(.pixelClk(pixelClk), .locked(locked), .hClk(hClk), .vClk(vClk), .xCor(xCor), .yCor(yCor));
+
 pixelTracker xygen(.pixelClk(pixelClk), .locked(locked_i), .xCor(xCor), .yCor());
 patternGen rainbow(.pixelClk(pixelClk), .locked(locked_i), .dValid(dValid_h & dValid_v), .xCor(xCor), .yCor(yCor), .R(redVal), .G(greenVal), .B(blueVal));
 

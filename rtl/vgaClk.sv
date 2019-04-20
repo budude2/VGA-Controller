@@ -1,11 +1,12 @@
 `timescale 1ns / 1ps
 
-module pixelTracker
-    (
-        input pixelClk,
-        input locked,
-        output [9:0] xCor,
-        output [9:0] yCor
+module vgaClk(
+    input logic pixelClk,
+    input logic locked,
+    output logic vClk,
+    output logic hClk,
+    output logic [9:0] xCor,
+    output logic [9:0] yCor
     );
 
 logic [18:0] pixelCount;
