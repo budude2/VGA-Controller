@@ -43,7 +43,7 @@ always_comb begin
         hClk = 1'b0;
         hVis = 1'b0;
     end
-    else begin               // Back Porch
+    else begin                              // Back Porch
         hClk = 1'b1;
         hVis = 1'b0;
     end
@@ -62,7 +62,7 @@ always_comb begin
         vClk = 1'b0;
         vVis = 1'b0;
     end
-    else begin               // Back Porch
+    else begin                              // Back Porch
         vClk = 1'b1;
         vVis = 1'b0;
     end
