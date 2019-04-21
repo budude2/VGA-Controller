@@ -31,15 +31,15 @@ assign xCor = pixelCount % 800;
 assign yCor = pixelCount / 800;
 
 always_comb begin
-    if(xCor < 639) begin                    // Visible Portion
+    if(xCor < 640) begin                    // Visible Portion
         hClk = 1'b1;
         hVis = 1'b1;
     end
-    else if(xCor > 639 & xCor < 655) begin  // Front Porch
+    else if(xCor >= 640 & xCor < 656) begin  // Front Porch
         hClk = 1'b1;
         hVis = 1'b0;
     end
-    else if(xCor > 655 & xCor < 751) begin  // Sync
+    else if(xCor >= 656 & xCor < 752) begin  // Sync
         hClk = 1'b0;
         hVis = 1'b0;
     end
@@ -50,15 +50,15 @@ always_comb begin
 end
 
 always_comb begin
-    if(yCor < 479) begin                    // Visible Portion
+    if(yCor < 480) begin                    // Visible Portion
         vClk = 1'b1;
         vVis = 1'b1;
     end
-    else if(yCor > 479 & yCor < 489) begin  // Front Porch
+    else if(yCor >= 480 & yCor < 490) begin  // Front Porch
         vClk = 1'b1;
         vVis = 1'b0;
     end
-    else if(yCor > 489 & yCor < 491) begin  // Sync
+    else if(yCor >= 490 & yCor < 492) begin  // Sync
         vClk = 1'b0;
         vVis = 1'b0;
     end
