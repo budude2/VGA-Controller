@@ -11,31 +11,34 @@ module VGA(
     output logic [3:0] VGA_B
     );
 
-logic dValid_h, dValid_v, pixelClk, locked_i, hclk_i, vclk_i;
+logic dValid_h, dValid_v, pixelClk, locked_i, hclk_i, vclk_i, dispValid, dispValid_q;
 logic [9:0] xCor, yCor;
 logic [18:0] addr;
-logic [3:0] douta;
+logic [3:0] data;
 
 clockGen pixelClkGen(.clk_100m(clk_100m), .reset(reset), .clk_25m(pixelClk), .locked(locked_i));
 vgaClk vgaTiming(.pixelClk(pixelClk), .locked(locked_i), .hClk(hclk_i), .vClk(vclk_i), .xCor(xCor), .yCor(yCor), .hVis(dValid_h), .vVis(dValid_v));
+
 assign addr = xCor + 640 * yCor;
+assign dispValid = dValid_h & dValid_v;
 
 blk_mem_gen_0 frameBuf
 (
-  .clka(pixelClk),                  // input wire clka
-  .ena(dValid_h & dValid_v),        // input wire ena
-  .addra(addr),                     // input wire [18 : 0] addra
-  .douta(douta)                     // output wire [3 : 0] douta
+  .clka(pixelClk),  // input wire clka
+  .ena(dispValid),  // input wire ena
+  .addra(addr),     // input wire [18 : 0] addra
+  .douta(data)      // output wire [3 : 0] douta
 );
 
 always_ff @(posedge pixelClk) begin
     hclk <= hclk_i;
     vclk <= vclk_i;
+    dispValid_q <= dispValid;
 end
 
 always_comb begin
-    if(dValid_h & dValid_v) begin
-        if(douta == 0) begin
+    if(dispValid_q) begin
+        if(data == 0) begin
             VGA_R = 0;
             VGA_G = 0;
             VGA_B = 0;
