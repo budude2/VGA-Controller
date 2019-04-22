@@ -1,7 +1,7 @@
 -- Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2018.3 (win64) Build 2405991 Thu Dec  6 23:38:27 MST 2018
--- Date        : Sat Apr 20 22:03:45 2019
+-- Date        : Sun Apr 21 21:17:06 2019
 -- Host        : DESKTOP-KBPHQS1 running 64-bit major release  (build 9200)
 -- Command     : write_vhdl -force -mode synth_stub
 --               C:/Users/xtjac/School/VGA-Controller/VGA.srcs/sources_1/ip/blk_mem_gen_0/blk_mem_gen_0_stub.vhdl
