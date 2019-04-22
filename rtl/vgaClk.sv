@@ -15,20 +15,25 @@ module vgaClk(
 
 logic [18:0] pixelCount;
 
-always_ff @(posedge pixelClk or negedge locked) begin : proc_pixelCount
+always_ff @(posedge pixelClk) begin
     if(~locked) begin
-        pixelCount <= 0;
-    end
-    else if(pixelCount > 419998) begin
-        pixelCount <= 0;
+        xCor <= 0;
+        yCor <= 0;
     end
     else begin
-        pixelCount <=  pixelCount + 1;
+        if(xCor < 799) begin
+            xCor <= xCor + 1;
+        end
+        else if(xCor == 799 & yCor < 524) begin
+            xCor <= 0;
+            yCor <= yCor + 1;
+        end
+        else if(xCor == 799 & yCor == 524) begin
+            xCor <= 0;
+            yCor <= 0;
+        end
     end
 end
-
-assign xCor = pixelCount % 800;
-assign yCor = pixelCount / 800;
 
 always_comb begin
     if(xCor < 640) begin                    // Visible Portion
