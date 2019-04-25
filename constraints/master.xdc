@@ -250,22 +250,3 @@ set_property -dict {PACKAGE_PIN B12 IOSTANDARD LVCMOS33} [get_ports vclk]
 #set_property -dict { PACKAGE_PIN L14   IOSTANDARD LVCMOS33 } [get_ports { QSPI_DQ[2] }]; #IO_L2P_T0_D02_14 Sch=qspi_dq[2]
 #set_property -dict { PACKAGE_PIN M14   IOSTANDARD LVCMOS33 } [get_ports { QSPI_DQ[3] }]; #IO_L2N_T0_D03_14 Sch=qspi_dq[3]
 #set_property -dict { PACKAGE_PIN L13   IOSTANDARD LVCMOS33 } [get_ports { QSPI_CSN }]; #IO_L6P_T0_FCS_B_14 Sch=qspi_csn
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-create_clock -period 39.725 -name VIRTUAL_clk_25m_pixel_clk -waveform {0.000 19.863}
-set_clock_groups -physically_exclusive -group [get_clocks -include_generated_clocks clk_100m] -group [get_clocks -include_generated_clocks sys_clk_pin]
-set_clock_groups -physically_exclusive -group [get_clocks -include_generated_clocks clkfbout_pixel_clk] -group [get_clocks -include_generated_clocks clkfbout_pixel_clk_1]
-set_clock_groups -physically_exclusive -group [get_clocks -include_generated_clocks clk_25m_pixel_clk] -group [get_clocks -include_generated_clocks clk_25m_pixel_clk_1]
-
