@@ -56,7 +56,8 @@
 //  Output     Output      Phase    Duty Cycle   Pk-to-Pk     Phase
 //   Clock     Freq (MHz)  (degrees)    (%)     Jitter (ps)  Error (ps)
 //----------------------------------------------------------------------------
-// _clk_25m____25.173______0.000______50.0______319.783____246.739
+// _clk_25m____25.175______0.000______50.0______183.215____105.461
+// clk_100m_o___100.000______0.000______50.0______137.681____105.461
 //
 //----------------------------------------------------------------------------
 // Input Clock   Freq (MHz)    Input Jitter (UI)
@@ -70,6 +71,7 @@ module pixel_clk_clk_wiz
  (// Clock in ports
   // Clock out ports
   output        clk_25m,
+  output        clk_100m_o,
   // Status and control signals
   input         reset,
   output        locked,
@@ -94,7 +96,7 @@ wire clk_in2_pixel_clk;
   //    * Unused outputs are labeled unused
 
   wire        clk_25m_pixel_clk;
-  wire        clk_out2_pixel_clk;
+  wire        clk_100m_o_pixel_clk;
   wire        clk_out3_pixel_clk;
   wire        clk_out4_pixel_clk;
   wire        clk_out5_pixel_clk;
@@ -109,7 +111,6 @@ wire clk_in2_pixel_clk;
   wire        clkfbout_buf_pixel_clk;
   wire        clkfboutb_unused;
     wire clkout0b_unused;
-   wire clkout1_unused;
    wire clkout1b_unused;
    wire clkout2_unused;
    wire clkout2b_unused;
@@ -127,14 +128,18 @@ wire clk_in2_pixel_clk;
     .CLKOUT4_CASCADE      ("FALSE"),
     .COMPENSATION         ("ZHOLD"),
     .STARTUP_WAIT         ("FALSE"),
-    .DIVCLK_DIVIDE        (4),
-    .CLKFBOUT_MULT_F      (36.375),
+    .DIVCLK_DIVIDE        (1),
+    .CLKFBOUT_MULT_F      (9.000),
     .CLKFBOUT_PHASE       (0.000),
     .CLKFBOUT_USE_FINE_PS ("FALSE"),
-    .CLKOUT0_DIVIDE_F     (36.125),
+    .CLKOUT0_DIVIDE_F     (35.750),
     .CLKOUT0_PHASE        (0.000),
     .CLKOUT0_DUTY_CYCLE   (0.500),
     .CLKOUT0_USE_FINE_PS  ("FALSE"),
+    .CLKOUT1_DIVIDE       (9),
+    .CLKOUT1_PHASE        (0.000),
+    .CLKOUT1_DUTY_CYCLE   (0.500),
+    .CLKOUT1_USE_FINE_PS  ("FALSE"),
     .CLKIN1_PERIOD        (10.000))
   mmcm_adv_inst
     // Output clocks
@@ -143,7 +148,7 @@ wire clk_in2_pixel_clk;
     .CLKFBOUTB           (clkfboutb_unused),
     .CLKOUT0             (clk_25m_pixel_clk),
     .CLKOUT0B            (clkout0b_unused),
-    .CLKOUT1             (clkout1_unused),
+    .CLKOUT1             (clk_100m_o_pixel_clk),
     .CLKOUT1B            (clkout1b_unused),
     .CLKOUT2             (clkout2_unused),
     .CLKOUT2B            (clkout2b_unused),
@@ -198,6 +203,10 @@ wire clk_in2_pixel_clk;
    (.O   (clk_25m),
     .I   (clk_25m_pixel_clk));
 
+
+  BUFG clkout2_buf
+   (.O   (clk_100m_o),
+    .I   (clk_100m_o_pixel_clk));
 
 
 

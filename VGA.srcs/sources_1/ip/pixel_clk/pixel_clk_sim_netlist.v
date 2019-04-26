@@ -1,10 +1,10 @@
 // Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2018.3 (win64) Build 2405991 Thu Dec  6 23:38:27 MST 2018
-// Date        : Wed Apr 17 08:36:13 2019
+// Date        : Fri Apr 26 15:13:26 2019
 // Host        : DESKTOP-KBPHQS1 running 64-bit major release  (build 9200)
-// Command     : write_verilog -force -mode funcsim {c:/Users/xtjac/Google
-//               Drive/School/ADLD/VGA/VGA.srcs/sources_1/ip/pixel_clk/pixel_clk_sim_netlist.v}
+// Command     : write_verilog -force -mode funcsim
+//               C:/Users/xtjac/School/VGA-Controller/VGA.srcs/sources_1/ip/pixel_clk/pixel_clk_sim_netlist.v
 // Design      : pixel_clk
 // Purpose     : This verilog netlist is a functional simulation representation of the design and should not be modified
 //               or synthesized. This netlist cannot be used for SDF annotated simulation.
@@ -15,21 +15,25 @@
 (* NotValidForBitStream *)
 module pixel_clk
    (clk_25m,
+    clk_100m_o,
     reset,
     locked,
     clk_100m);
   output clk_25m;
+  output clk_100m_o;
   input reset;
   output locked;
   input clk_100m;
 
   (* IBUF_LOW_PWR *) wire clk_100m;
+  wire clk_100m_o;
   wire clk_25m;
   wire locked;
   wire reset;
 
   pixel_clk_pixel_clk_clk_wiz inst
        (.clk_100m(clk_100m),
+        .clk_100m_o(clk_100m_o),
         .clk_25m(clk_25m),
         .locked(locked),
         .reset(reset));
@@ -38,15 +42,19 @@ endmodule
 (* ORIG_REF_NAME = "pixel_clk_clk_wiz" *) 
 module pixel_clk_pixel_clk_clk_wiz
    (clk_25m,
+    clk_100m_o,
     reset,
     locked,
     clk_100m);
   output clk_25m;
+  output clk_100m_o;
   input reset;
   output locked;
   input clk_100m;
 
   wire clk_100m;
+  wire clk_100m_o;
+  wire clk_100m_o_pixel_clk;
   wire clk_100m_pixel_clk;
   wire clk_25m;
   wire clk_25m_pixel_clk;
@@ -58,7 +66,6 @@ module pixel_clk_pixel_clk_clk_wiz
   wire NLW_mmcm_adv_inst_CLKFBSTOPPED_UNCONNECTED;
   wire NLW_mmcm_adv_inst_CLKINSTOPPED_UNCONNECTED;
   wire NLW_mmcm_adv_inst_CLKOUT0B_UNCONNECTED;
-  wire NLW_mmcm_adv_inst_CLKOUT1_UNCONNECTED;
   wire NLW_mmcm_adv_inst_CLKOUT1B_UNCONNECTED;
   wire NLW_mmcm_adv_inst_CLKOUT2_UNCONNECTED;
   wire NLW_mmcm_adv_inst_CLKOUT2B_UNCONNECTED;
@@ -89,18 +96,22 @@ module pixel_clk_pixel_clk_clk_wiz
        (.I(clk_25m_pixel_clk),
         .O(clk_25m));
   (* BOX_TYPE = "PRIMITIVE" *) 
+  BUFG clkout2_buf
+       (.I(clk_100m_o_pixel_clk),
+        .O(clk_100m_o));
+  (* BOX_TYPE = "PRIMITIVE" *) 
   MMCME2_ADV #(
     .BANDWIDTH("OPTIMIZED"),
-    .CLKFBOUT_MULT_F(36.375000),
+    .CLKFBOUT_MULT_F(9.000000),
     .CLKFBOUT_PHASE(0.000000),
     .CLKFBOUT_USE_FINE_PS("FALSE"),
     .CLKIN1_PERIOD(10.000000),
     .CLKIN2_PERIOD(0.000000),
-    .CLKOUT0_DIVIDE_F(36.125000),
+    .CLKOUT0_DIVIDE_F(35.750000),
     .CLKOUT0_DUTY_CYCLE(0.500000),
     .CLKOUT0_PHASE(0.000000),
     .CLKOUT0_USE_FINE_PS("FALSE"),
-    .CLKOUT1_DIVIDE(1),
+    .CLKOUT1_DIVIDE(9),
     .CLKOUT1_DUTY_CYCLE(0.500000),
     .CLKOUT1_PHASE(0.000000),
     .CLKOUT1_USE_FINE_PS("FALSE"),
@@ -126,7 +137,7 @@ module pixel_clk_pixel_clk_clk_wiz
     .CLKOUT6_PHASE(0.000000),
     .CLKOUT6_USE_FINE_PS("FALSE"),
     .COMPENSATION("ZHOLD"),
-    .DIVCLK_DIVIDE(4),
+    .DIVCLK_DIVIDE(1),
     .IS_CLKINSEL_INVERTED(1'b0),
     .IS_PSEN_INVERTED(1'b0),
     .IS_PSINCDEC_INVERTED(1'b0),
@@ -149,7 +160,7 @@ module pixel_clk_pixel_clk_clk_wiz
         .CLKINSTOPPED(NLW_mmcm_adv_inst_CLKINSTOPPED_UNCONNECTED),
         .CLKOUT0(clk_25m_pixel_clk),
         .CLKOUT0B(NLW_mmcm_adv_inst_CLKOUT0B_UNCONNECTED),
-        .CLKOUT1(NLW_mmcm_adv_inst_CLKOUT1_UNCONNECTED),
+        .CLKOUT1(clk_100m_o_pixel_clk),
         .CLKOUT1B(NLW_mmcm_adv_inst_CLKOUT1B_UNCONNECTED),
         .CLKOUT2(NLW_mmcm_adv_inst_CLKOUT2_UNCONNECTED),
         .CLKOUT2B(NLW_mmcm_adv_inst_CLKOUT2B_UNCONNECTED),

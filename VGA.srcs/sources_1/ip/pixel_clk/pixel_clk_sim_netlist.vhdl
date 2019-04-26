@@ -1,10 +1,10 @@
 -- Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2018.3 (win64) Build 2405991 Thu Dec  6 23:38:27 MST 2018
--- Date        : Wed Apr 17 08:36:13 2019
+-- Date        : Fri Apr 26 15:13:26 2019
 -- Host        : DESKTOP-KBPHQS1 running 64-bit major release  (build 9200)
--- Command     : write_vhdl -force -mode funcsim {c:/Users/xtjac/Google
---               Drive/School/ADLD/VGA/VGA.srcs/sources_1/ip/pixel_clk/pixel_clk_sim_netlist.vhdl}
+-- Command     : write_vhdl -force -mode funcsim
+--               C:/Users/xtjac/School/VGA-Controller/VGA.srcs/sources_1/ip/pixel_clk/pixel_clk_sim_netlist.vhdl
 -- Design      : pixel_clk
 -- Purpose     : This VHDL netlist is a functional simulation representation of the design and should not be modified or
 --               synthesized. This netlist cannot be used for SDF annotated simulation.
@@ -17,6 +17,7 @@ use UNISIM.VCOMPONENTS.ALL;
 entity pixel_clk_pixel_clk_clk_wiz is
   port (
     clk_25m : out STD_LOGIC;
+    clk_100m_o : out STD_LOGIC;
     reset : in STD_LOGIC;
     locked : out STD_LOGIC;
     clk_100m : in STD_LOGIC
@@ -26,6 +27,7 @@ entity pixel_clk_pixel_clk_clk_wiz is
 end pixel_clk_pixel_clk_clk_wiz;
 
 architecture STRUCTURE of pixel_clk_pixel_clk_clk_wiz is
+  signal clk_100m_o_pixel_clk : STD_LOGIC;
   signal clk_100m_pixel_clk : STD_LOGIC;
   signal clk_25m_pixel_clk : STD_LOGIC;
   signal clkfbout_buf_pixel_clk : STD_LOGIC;
@@ -34,7 +36,6 @@ architecture STRUCTURE of pixel_clk_pixel_clk_clk_wiz is
   signal NLW_mmcm_adv_inst_CLKFBSTOPPED_UNCONNECTED : STD_LOGIC;
   signal NLW_mmcm_adv_inst_CLKINSTOPPED_UNCONNECTED : STD_LOGIC;
   signal NLW_mmcm_adv_inst_CLKOUT0B_UNCONNECTED : STD_LOGIC;
-  signal NLW_mmcm_adv_inst_CLKOUT1_UNCONNECTED : STD_LOGIC;
   signal NLW_mmcm_adv_inst_CLKOUT1B_UNCONNECTED : STD_LOGIC;
   signal NLW_mmcm_adv_inst_CLKOUT2_UNCONNECTED : STD_LOGIC;
   signal NLW_mmcm_adv_inst_CLKOUT2B_UNCONNECTED : STD_LOGIC;
@@ -56,6 +57,7 @@ architecture STRUCTURE of pixel_clk_pixel_clk_clk_wiz is
   attribute IFD_DELAY_VALUE : string;
   attribute IFD_DELAY_VALUE of clkin1_ibufg : label is "AUTO";
   attribute BOX_TYPE of clkout1_buf : label is "PRIMITIVE";
+  attribute BOX_TYPE of clkout2_buf : label is "PRIMITIVE";
   attribute BOX_TYPE of mmcm_adv_inst : label is "PRIMITIVE";
 begin
 clkf_buf: unisim.vcomponents.BUFG
@@ -76,19 +78,24 @@ clkout1_buf: unisim.vcomponents.BUFG
       I => clk_25m_pixel_clk,
       O => clk_25m
     );
+clkout2_buf: unisim.vcomponents.BUFG
+     port map (
+      I => clk_100m_o_pixel_clk,
+      O => clk_100m_o
+    );
 mmcm_adv_inst: unisim.vcomponents.MMCME2_ADV
     generic map(
       BANDWIDTH => "OPTIMIZED",
-      CLKFBOUT_MULT_F => 36.375000,
+      CLKFBOUT_MULT_F => 9.000000,
       CLKFBOUT_PHASE => 0.000000,
       CLKFBOUT_USE_FINE_PS => false,
       CLKIN1_PERIOD => 10.000000,
       CLKIN2_PERIOD => 0.000000,
-      CLKOUT0_DIVIDE_F => 36.125000,
+      CLKOUT0_DIVIDE_F => 35.750000,
       CLKOUT0_DUTY_CYCLE => 0.500000,
       CLKOUT0_PHASE => 0.000000,
       CLKOUT0_USE_FINE_PS => false,
-      CLKOUT1_DIVIDE => 1,
+      CLKOUT1_DIVIDE => 9,
       CLKOUT1_DUTY_CYCLE => 0.500000,
       CLKOUT1_PHASE => 0.000000,
       CLKOUT1_USE_FINE_PS => false,
@@ -114,7 +121,7 @@ mmcm_adv_inst: unisim.vcomponents.MMCME2_ADV
       CLKOUT6_PHASE => 0.000000,
       CLKOUT6_USE_FINE_PS => false,
       COMPENSATION => "ZHOLD",
-      DIVCLK_DIVIDE => 4,
+      DIVCLK_DIVIDE => 1,
       IS_CLKINSEL_INVERTED => '0',
       IS_PSEN_INVERTED => '0',
       IS_PSINCDEC_INVERTED => '0',
@@ -138,7 +145,7 @@ mmcm_adv_inst: unisim.vcomponents.MMCME2_ADV
       CLKINSTOPPED => NLW_mmcm_adv_inst_CLKINSTOPPED_UNCONNECTED,
       CLKOUT0 => clk_25m_pixel_clk,
       CLKOUT0B => NLW_mmcm_adv_inst_CLKOUT0B_UNCONNECTED,
-      CLKOUT1 => NLW_mmcm_adv_inst_CLKOUT1_UNCONNECTED,
+      CLKOUT1 => clk_100m_o_pixel_clk,
       CLKOUT1B => NLW_mmcm_adv_inst_CLKOUT1B_UNCONNECTED,
       CLKOUT2 => NLW_mmcm_adv_inst_CLKOUT2_UNCONNECTED,
       CLKOUT2B => NLW_mmcm_adv_inst_CLKOUT2B_UNCONNECTED,
@@ -170,6 +177,7 @@ use UNISIM.VCOMPONENTS.ALL;
 entity pixel_clk is
   port (
     clk_25m : out STD_LOGIC;
+    clk_100m_o : out STD_LOGIC;
     reset : in STD_LOGIC;
     locked : out STD_LOGIC;
     clk_100m : in STD_LOGIC
@@ -183,6 +191,7 @@ begin
 inst: entity work.pixel_clk_pixel_clk_clk_wiz
      port map (
       clk_100m => clk_100m,
+      clk_100m_o => clk_100m_o,
       clk_25m => clk_25m,
       locked => locked,
       reset => reset

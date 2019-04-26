@@ -11,23 +11,34 @@ module VGA(
     output logic [3:0] VGA_B
     );
 
-logic dValid_h, dValid_v, pixelClk, locked_i, hclk_i, vclk_i, dispValid, dispValid_q;
+logic dValid_h, dValid_v, pixelClk, mbClk, locked_i, hclk_i, vclk_i, dispValid, dispValid_q;
 logic [9:0] xCor, yCor;
 logic [18:0] addr;
 logic [3:0] data;
 
-clockGen pixelClkGen(.clk_100m(clk_100m), .reset(reset), .clk_25m(pixelClk), .locked(locked_i));
+clockGen pixelClkGen(.clk_100m(clk_100m), .reset(reset), .clk_25m(pixelClk), .clk_100m_o(mbClk), .locked(locked_i));
 vgaClk vgaTiming(.pixelClk(pixelClk), .locked(locked_i), .hClk(hclk_i), .vClk(vclk_i), .xCor(xCor), .yCor(yCor), .hVis(dValid_h), .vVis(dValid_v));
 
 assign addr = xCor + 640 * yCor;
 assign dispValid = dValid_h & dValid_v;
 
-blk_mem_gen_0 frameBuf
+// blk_mem_gen_0 frameBuf
+// (
+//   .clka(pixelClk),  // input wire clka
+//   .ena(dispValid),  // input wire ena
+//   .addra(addr),     // input wire [18 : 0] addra
+//   .douta(data)      // output wire [3 : 0] douta
+// );
+
+microblaze_wrapper controller
 (
-  .clka(pixelClk),  // input wire clka
-  .ena(dispValid),  // input wire ena
-  .addra(addr),     // input wire [18 : 0] addra
-  .douta(data)      // output wire [3 : 0] douta
+    .bram_addr(addr),
+    .bram_clk(pixelClk),
+    .bram_dout(data),
+    .bram_en(dispValid),
+    .clk_100MHz(mbClk),
+    .locked(locked_i),
+    .rst(reset)
 );
 
 always_ff @(posedge pixelClk) begin

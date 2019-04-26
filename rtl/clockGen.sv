@@ -4,6 +4,7 @@ module clockGen(
     input logic clk_100m,
     input logic reset,
     output logic clk_25m,
+    output logic clk_100m_o,
     output logic locked
     );
 
@@ -13,7 +14,7 @@ logic clk_25m_i, locked_i;
 //  Output     Output      Phase    Duty Cycle   Pk-to-Pk     Phase
 //   Clock     Freq (MHz)  (degrees)    (%)     Jitter (ps)  Error (ps)
 //----------------------------------------------------------------------------
-// _clk_25m____25.173______0.000______50.0______319.783____246.739
+// _clk_25m____25.175______0.000______50.0______319.783____246.739
 //
 //----------------------------------------------------------------------------
 // Input Clock   Freq (MHz)    Input Jitter (UI)
@@ -27,6 +28,7 @@ pixel_clk pixel_clk_gen
 
     // Clock out ports
     .clk_25m(clk_25m_i),  // output clk_25m
+    .clk_100m_o(clk_100m_o),     // output clk_100m_o
 
     // Status and control signals
     .reset(reset),          // input reset
