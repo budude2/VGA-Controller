@@ -14,42 +14,73 @@ module VGA(
 logic dValid_h, dValid_v, pixelClk, mbClk, locked_i, hclk_i, vclk_i, dispValid, dispValid_q;
 logic [9:0] xCor, yCor;
 logic [18:0] addr;
-logic [3:0] data;
+logic [31:0] addrBram;
+logic [4:0] addrSel;
+logic [31:0] bramData;
+logic [3:0] vidData;
 
-clockGen pixelClkGen(.clk_100m(clk_100m), .reset(reset), .clk_25m(pixelClk), .clk_100m_o(mbClk), .locked(locked_i));
-vgaClk vgaTiming(.pixelClk(pixelClk), .locked(locked_i), .hClk(hclk_i), .vClk(vclk_i), .xCor(xCor), .yCor(yCor), .hVis(dValid_h), .vVis(dValid_v));
+clockGen pixelClkGen
+(
+    .clk_100m(clk_100m),
+    .reset(reset),
+    .clk_25m(pixelClk),
+    .clk_100m_o(mbClk),
+    .locked(locked_i)
+);
 
-assign addr = xCor + 640 * yCor;
-assign dispValid = dValid_h & dValid_v;
+vgaClk vgaTiming
+(
+    .pixelClk(pixelClk),
+    .locked(locked_i),
+    .hClk(hclk_i),
+    .vClk(vclk_i),
+    .xCor(xCor),
+    .yCor(yCor),
+    .hVis(dValid_h),
+    .vVis(dValid_v)
+);
 
-// blk_mem_gen_0 frameBuf
-// (
-//   .clka(pixelClk),  // input wire clka
-//   .ena(dispValid),  // input wire ena
-//   .addra(addr),     // input wire [18 : 0] addra
-//   .douta(data)      // output wire [3 : 0] douta
-// );
+assign addr         = xCor + 640 * yCor;
+assign dispValid    = dValid_h & dValid_v;
+assign addrBram     = addr / 8;
+assign addrSel      = addr % 8;
 
 microblaze_wrapper controller
 (
-    .bram_addr(addr),
+    .bram_addr(addrBram),
     .bram_clk(pixelClk),
-    .bram_dout(data),
+    .bram_dout(bramData),
     .bram_en(dispValid),
     .clk_100MHz(mbClk),
     .locked(locked_i),
     .rst(reset)
 );
 
+//assign vidData = bramData[(addrSel << 2) +: 4];
+//assign vidData = bramData[addrSel * 4 +: 4];
+
+always_comb begin
+    case(addrSel)
+        0: vidData = bramData[3:0];
+        1: vidData = bramData[7:4];
+        2: vidData = bramData[11:8];
+        3: vidData = bramData[15:12];
+        4: vidData = bramData[19:16];
+        5: vidData = bramData[23:20];
+        6: vidData = bramData[27:24];
+        7: vidData = bramData[31:28];
+    endcase
+end
+
 always_ff @(posedge pixelClk) begin
-    hclk <= hclk_i;
-    vclk <= vclk_i;
+    hclk        <= hclk_i;
+    vclk        <= vclk_i;
     dispValid_q <= dispValid;
 end
 
 always_comb begin
     if(dispValid_q) begin
-        case(data)
+        case(vidData)
             0:
                 begin
                     VGA_R = 4'hf;

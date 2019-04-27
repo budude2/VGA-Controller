@@ -43,7 +43,7 @@ int main(void)
 	int idx;
 	for(idx = 0; idx < 38400; idx++)
 	{
-		XBram_WriteReg(BRAM_BASE_ADDR, idx, 0xF0000000);
+		XBram_WriteReg(BRAM_BASE_ADDR, idx, 0x00000000B);
 	}
 
 	return XST_SUCCESS;
