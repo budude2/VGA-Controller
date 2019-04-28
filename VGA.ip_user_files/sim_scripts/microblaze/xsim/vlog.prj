@@ -1,0 +1,8 @@
+verilog xil_defaultlib --include "../../../../../parkingLotProblem/rtl/microblaze/microblaze/ipshared/ec67/hdl" \
+"../../../../../parkingLotProblem/rtl/microblaze/microblaze/ip/microblaze_lmb_bram_0/sim/microblaze_lmb_bram_0.v" \
+"../../../../../parkingLotProblem/rtl/microblaze/microblaze/ip/microblaze_xbar_0/sim/microblaze_xbar_0.v" \
+"../../../../../parkingLotProblem/rtl/microblaze/microblaze/ip/microblaze_blk_mem_gen_0_0/sim/microblaze_blk_mem_gen_0_0.v" \
+
+verilog xil_defaultlib "glbl.v"
+
+nosort
