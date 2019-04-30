@@ -1,10 +1,10 @@
 -- Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2018.3 (win64) Build 2405991 Thu Dec  6 23:38:27 MST 2018
--- Date        : Sat Apr 27 10:10:46 2019
--- Host        : DESKTOP-KBPHQS1 running 64-bit major release  (build 9200)
--- Command     : write_vhdl -force -mode funcsim -rename_top microblaze_axi_bram_ctrl_0_0 -prefix
---               microblaze_axi_bram_ctrl_0_0_ microblaze_axi_bram_ctrl_0_0_sim_netlist.vhdl
+-- Date        : Mon Apr 29 17:42:07 2019
+-- Host        : DESKTOP-S0CCCTL running 64-bit major release  (build 9200)
+-- Command     : write_vhdl -force -mode funcsim
+--               C:/Users/Jacob/School/VGA-Controller/rtl/microblaze/microblaze/ip/microblaze_axi_bram_ctrl_0_0/microblaze_axi_bram_ctrl_0_0_sim_netlist.vhdl
 -- Design      : microblaze_axi_bram_ctrl_0_0
 -- Purpose     : This VHDL netlist is a functional simulation representation of the design and should not be modified or
 --               synthesized. This netlist cannot be used for SDF annotated simulation.
@@ -25,7 +25,7 @@ entity microblaze_axi_bram_ctrl_0_0_axi_lite is
     \GEN_AXI4LITE.GEN_SIM_ONLY.S_AXI_RID_int_reg[0]\ : out STD_LOGIC;
     bram_en_a : out STD_LOGIC;
     bram_we_a : out STD_LOGIC_VECTOR ( 3 downto 0 );
-    bram_addr_a : out STD_LOGIC_VECTOR ( 14 downto 0 );
+    bram_addr_a : out STD_LOGIC_VECTOR ( 15 downto 0 );
     s_axi_aclk : in STD_LOGIC;
     s_axi_aresetn : in STD_LOGIC;
     s_axi_awid : in STD_LOGIC_VECTOR ( 0 to 0 );
@@ -37,10 +37,12 @@ entity microblaze_axi_bram_ctrl_0_0_axi_lite is
     s_axi_wstrb : in STD_LOGIC_VECTOR ( 3 downto 0 );
     s_axi_wvalid : in STD_LOGIC;
     s_axi_bready : in STD_LOGIC;
-    s_axi_araddr : in STD_LOGIC_VECTOR ( 14 downto 0 );
-    s_axi_awaddr : in STD_LOGIC_VECTOR ( 14 downto 0 );
+    s_axi_araddr : in STD_LOGIC_VECTOR ( 15 downto 0 );
+    s_axi_awaddr : in STD_LOGIC_VECTOR ( 15 downto 0 );
     s_axi_rready : in STD_LOGIC
   );
+  attribute ORIG_REF_NAME : string;
+  attribute ORIG_REF_NAME of microblaze_axi_bram_ctrl_0_0_axi_lite : entity is "axi_lite";
 end microblaze_axi_bram_ctrl_0_0_axi_lite;
 
 architecture STRUCTURE of microblaze_axi_bram_ctrl_0_0_axi_lite is
@@ -78,8 +80,8 @@ architecture STRUCTURE of microblaze_axi_bram_ctrl_0_0_axi_lite is
   attribute SOFT_HLUTNM of \GEN_NO_RD_CMD_OPT.bvalid_cnt[1]_i_1\ : label is "soft_lutpair1";
   attribute SOFT_HLUTNM of bram_en_a_INST_0 : label is "soft_lutpair0";
   attribute SOFT_HLUTNM of \bram_we_a[0]_INST_0\ : label is "soft_lutpair2";
-  attribute SOFT_HLUTNM of \bram_we_a[1]_INST_0\ : label is "soft_lutpair2";
-  attribute SOFT_HLUTNM of \bram_we_a[2]_INST_0\ : label is "soft_lutpair3";
+  attribute SOFT_HLUTNM of \bram_we_a[1]_INST_0\ : label is "soft_lutpair3";
+  attribute SOFT_HLUTNM of \bram_we_a[2]_INST_0\ : label is "soft_lutpair2";
   attribute SOFT_HLUTNM of \bram_we_a[3]_INST_0\ : label is "soft_lutpair3";
 begin
   s_axi_aresetn_0 <= \^s_axi_aresetn_0\;
@@ -476,6 +478,19 @@ begin
       I5 => s_axi_awaddr(14),
       O => bram_addr_a(14)
     );
+\bram_addr_a[17]_INST_0\: unisim.vcomponents.LUT6
+    generic map(
+      INIT => X"AAAABBBFAAAA8880"
+    )
+        port map (
+      I0 => s_axi_araddr(15),
+      I1 => s_axi_arvalid,
+      I2 => \FSM_onehot_GEN_NO_RD_CMD_OPT.lite_sm_cs_reg_n_0_[5]\,
+      I3 => \FSM_onehot_GEN_NO_RD_CMD_OPT.lite_sm_cs_reg_n_0_[0]\,
+      I4 => p_0_in1_in,
+      I5 => s_axi_awaddr(15),
+      O => bram_addr_a(15)
+    );
 \bram_addr_a[2]_INST_0\: unisim.vcomponents.LUT6
     generic map(
       INIT => X"AAAABBBFAAAA8880"
@@ -665,7 +680,7 @@ entity microblaze_axi_bram_ctrl_0_0_axi_bram_ctrl_top is
     bram_en_a : out STD_LOGIC;
     bram_we_a : out STD_LOGIC_VECTOR ( 3 downto 0 );
     s_axi_bvalid : out STD_LOGIC;
-    bram_addr_a : out STD_LOGIC_VECTOR ( 14 downto 0 );
+    bram_addr_a : out STD_LOGIC_VECTOR ( 15 downto 0 );
     s_axi_rlast : out STD_LOGIC;
     s_axi_arready : out STD_LOGIC;
     s_axi_bid : out STD_LOGIC_VECTOR ( 0 to 0 );
@@ -677,12 +692,14 @@ entity microblaze_axi_bram_ctrl_0_0_axi_bram_ctrl_top is
     s_axi_wvalid : in STD_LOGIC;
     s_axi_awvalid : in STD_LOGIC;
     s_axi_bready : in STD_LOGIC;
-    s_axi_araddr : in STD_LOGIC_VECTOR ( 14 downto 0 );
-    s_axi_awaddr : in STD_LOGIC_VECTOR ( 14 downto 0 );
+    s_axi_araddr : in STD_LOGIC_VECTOR ( 15 downto 0 );
+    s_axi_awaddr : in STD_LOGIC_VECTOR ( 15 downto 0 );
     s_axi_rready : in STD_LOGIC;
     s_axi_awid : in STD_LOGIC_VECTOR ( 0 to 0 );
     s_axi_arid : in STD_LOGIC_VECTOR ( 0 to 0 )
   );
+  attribute ORIG_REF_NAME : string;
+  attribute ORIG_REF_NAME of microblaze_axi_bram_ctrl_0_0_axi_bram_ctrl_top : entity is "axi_bram_ctrl_top";
 end microblaze_axi_bram_ctrl_0_0_axi_bram_ctrl_top;
 
 architecture STRUCTURE of microblaze_axi_bram_ctrl_0_0_axi_bram_ctrl_top is
@@ -720,17 +737,17 @@ begin
 \GEN_AXI4LITE.I_AXI_LITE\: entity work.microblaze_axi_bram_ctrl_0_0_axi_lite
      port map (
       \GEN_AXI4LITE.GEN_SIM_ONLY.S_AXI_RID_int_reg[0]\ => \GEN_AXI4LITE.I_AXI_LITE_n_6\,
-      bram_addr_a(14 downto 0) => bram_addr_a(14 downto 0),
+      bram_addr_a(15 downto 0) => bram_addr_a(15 downto 0),
       bram_en_a => bram_en_a,
       bram_we_a(3 downto 0) => bram_we_a(3 downto 0),
       s_axi_aclk => s_axi_aclk,
-      s_axi_araddr(14 downto 0) => s_axi_araddr(14 downto 0),
+      s_axi_araddr(15 downto 0) => s_axi_araddr(15 downto 0),
       s_axi_aresetn => s_axi_aresetn,
       s_axi_aresetn_0 => \^s_axi_aresetn_0\,
       s_axi_arid(0) => s_axi_arid(0),
       s_axi_arready => s_axi_arready,
       s_axi_arvalid => s_axi_arvalid,
-      s_axi_awaddr(14 downto 0) => s_axi_awaddr(14 downto 0),
+      s_axi_awaddr(15 downto 0) => s_axi_awaddr(15 downto 0),
       s_axi_awid(0) => s_axi_awid(0),
       s_axi_awready => s_axi_awready,
       s_axi_awvalid => s_axi_awvalid,
@@ -756,7 +773,7 @@ entity microblaze_axi_bram_ctrl_0_0_axi_bram_ctrl is
     ecc_interrupt : out STD_LOGIC;
     ecc_ue : out STD_LOGIC;
     s_axi_awid : in STD_LOGIC_VECTOR ( 0 to 0 );
-    s_axi_awaddr : in STD_LOGIC_VECTOR ( 16 downto 0 );
+    s_axi_awaddr : in STD_LOGIC_VECTOR ( 17 downto 0 );
     s_axi_awlen : in STD_LOGIC_VECTOR ( 7 downto 0 );
     s_axi_awsize : in STD_LOGIC_VECTOR ( 2 downto 0 );
     s_axi_awburst : in STD_LOGIC_VECTOR ( 1 downto 0 );
@@ -775,7 +792,7 @@ entity microblaze_axi_bram_ctrl_0_0_axi_bram_ctrl is
     s_axi_bvalid : out STD_LOGIC;
     s_axi_bready : in STD_LOGIC;
     s_axi_arid : in STD_LOGIC_VECTOR ( 0 to 0 );
-    s_axi_araddr : in STD_LOGIC_VECTOR ( 16 downto 0 );
+    s_axi_araddr : in STD_LOGIC_VECTOR ( 17 downto 0 );
     s_axi_arlen : in STD_LOGIC_VECTOR ( 7 downto 0 );
     s_axi_arsize : in STD_LOGIC_VECTOR ( 2 downto 0 );
     s_axi_arburst : in STD_LOGIC_VECTOR ( 1 downto 0 );
@@ -810,19 +827,19 @@ entity microblaze_axi_bram_ctrl_0_0_axi_bram_ctrl is
     bram_clk_a : out STD_LOGIC;
     bram_en_a : out STD_LOGIC;
     bram_we_a : out STD_LOGIC_VECTOR ( 3 downto 0 );
-    bram_addr_a : out STD_LOGIC_VECTOR ( 16 downto 0 );
+    bram_addr_a : out STD_LOGIC_VECTOR ( 17 downto 0 );
     bram_wrdata_a : out STD_LOGIC_VECTOR ( 31 downto 0 );
     bram_rddata_a : in STD_LOGIC_VECTOR ( 31 downto 0 );
     bram_rst_b : out STD_LOGIC;
     bram_clk_b : out STD_LOGIC;
     bram_en_b : out STD_LOGIC;
     bram_we_b : out STD_LOGIC_VECTOR ( 3 downto 0 );
-    bram_addr_b : out STD_LOGIC_VECTOR ( 16 downto 0 );
+    bram_addr_b : out STD_LOGIC_VECTOR ( 17 downto 0 );
     bram_wrdata_b : out STD_LOGIC_VECTOR ( 31 downto 0 );
     bram_rddata_b : in STD_LOGIC_VECTOR ( 31 downto 0 )
   );
   attribute C_BRAM_ADDR_WIDTH : integer;
-  attribute C_BRAM_ADDR_WIDTH of microblaze_axi_bram_ctrl_0_0_axi_bram_ctrl : entity is 15;
+  attribute C_BRAM_ADDR_WIDTH of microblaze_axi_bram_ctrl_0_0_axi_bram_ctrl : entity is 16;
   attribute C_BRAM_INST_MODE : string;
   attribute C_BRAM_INST_MODE of microblaze_axi_bram_ctrl_0_0_axi_bram_ctrl : entity is "EXTERNAL";
   attribute C_ECC : integer;
@@ -836,7 +853,7 @@ entity microblaze_axi_bram_ctrl_0_0_axi_bram_ctrl is
   attribute C_FAULT_INJECT : integer;
   attribute C_FAULT_INJECT of microblaze_axi_bram_ctrl_0_0_axi_bram_ctrl : entity is 0;
   attribute C_MEMORY_DEPTH : integer;
-  attribute C_MEMORY_DEPTH of microblaze_axi_bram_ctrl_0_0_axi_bram_ctrl : entity is 32768;
+  attribute C_MEMORY_DEPTH of microblaze_axi_bram_ctrl_0_0_axi_bram_ctrl : entity is 65536;
   attribute C_RD_CMD_OPTIMIZATION : integer;
   attribute C_RD_CMD_OPTIMIZATION of microblaze_axi_bram_ctrl_0_0_axi_bram_ctrl : entity is 0;
   attribute C_READ_LATENCY : integer;
@@ -846,7 +863,7 @@ entity microblaze_axi_bram_ctrl_0_0_axi_bram_ctrl is
   attribute C_SINGLE_PORT_BRAM : integer;
   attribute C_SINGLE_PORT_BRAM of microblaze_axi_bram_ctrl_0_0_axi_bram_ctrl : entity is 1;
   attribute C_S_AXI_ADDR_WIDTH : integer;
-  attribute C_S_AXI_ADDR_WIDTH of microblaze_axi_bram_ctrl_0_0_axi_bram_ctrl : entity is 17;
+  attribute C_S_AXI_ADDR_WIDTH of microblaze_axi_bram_ctrl_0_0_axi_bram_ctrl : entity is 18;
   attribute C_S_AXI_CTRL_ADDR_WIDTH : integer;
   attribute C_S_AXI_CTRL_ADDR_WIDTH of microblaze_axi_bram_ctrl_0_0_axi_bram_ctrl : entity is 32;
   attribute C_S_AXI_CTRL_DATA_WIDTH : integer;
@@ -859,13 +876,15 @@ entity microblaze_axi_bram_ctrl_0_0_axi_bram_ctrl is
   attribute C_S_AXI_PROTOCOL of microblaze_axi_bram_ctrl_0_0_axi_bram_ctrl : entity is "AXI4LITE";
   attribute C_S_AXI_SUPPORTS_NARROW_BURST : integer;
   attribute C_S_AXI_SUPPORTS_NARROW_BURST of microblaze_axi_bram_ctrl_0_0_axi_bram_ctrl : entity is 0;
+  attribute ORIG_REF_NAME : string;
+  attribute ORIG_REF_NAME of microblaze_axi_bram_ctrl_0_0_axi_bram_ctrl : entity is "axi_bram_ctrl";
   attribute downgradeipidentifiedwarnings : string;
   attribute downgradeipidentifiedwarnings of microblaze_axi_bram_ctrl_0_0_axi_bram_ctrl : entity is "yes";
 end microblaze_axi_bram_ctrl_0_0_axi_bram_ctrl;
 
 architecture STRUCTURE of microblaze_axi_bram_ctrl_0_0_axi_bram_ctrl is
   signal \<const0>\ : STD_LOGIC;
-  signal \^bram_addr_a\ : STD_LOGIC_VECTOR ( 16 downto 2 );
+  signal \^bram_addr_a\ : STD_LOGIC_VECTOR ( 17 downto 2 );
   signal \^bram_rddata_a\ : STD_LOGIC_VECTOR ( 31 downto 0 );
   signal \^s_axi_aclk\ : STD_LOGIC;
   signal \^s_axi_awready\ : STD_LOGIC;
@@ -875,9 +894,10 @@ begin
   \^bram_rddata_a\(31 downto 0) <= bram_rddata_a(31 downto 0);
   \^s_axi_aclk\ <= s_axi_aclk;
   \^s_axi_wdata\(31 downto 0) <= s_axi_wdata(31 downto 0);
-  bram_addr_a(16 downto 2) <= \^bram_addr_a\(16 downto 2);
+  bram_addr_a(17 downto 2) <= \^bram_addr_a\(17 downto 2);
   bram_addr_a(1) <= \<const0>\;
   bram_addr_a(0) <= \<const0>\;
+  bram_addr_b(17) <= \<const0>\;
   bram_addr_b(16) <= \<const0>\;
   bram_addr_b(15) <= \<const0>\;
   bram_addr_b(14) <= \<const0>\;
@@ -994,17 +1014,17 @@ GND: unisim.vcomponents.GND
     );
 \gext_inst.abcv4_0_ext_inst\: entity work.microblaze_axi_bram_ctrl_0_0_axi_bram_ctrl_top
      port map (
-      bram_addr_a(14 downto 0) => \^bram_addr_a\(16 downto 2),
+      bram_addr_a(15 downto 0) => \^bram_addr_a\(17 downto 2),
       bram_en_a => bram_en_a,
       bram_we_a(3 downto 0) => bram_we_a(3 downto 0),
       s_axi_aclk => \^s_axi_aclk\,
-      s_axi_araddr(14 downto 0) => s_axi_araddr(16 downto 2),
+      s_axi_araddr(15 downto 0) => s_axi_araddr(17 downto 2),
       s_axi_aresetn => s_axi_aresetn,
       s_axi_aresetn_0 => bram_rst_a,
       s_axi_arid(0) => s_axi_arid(0),
       s_axi_arready => s_axi_arready,
       s_axi_arvalid => s_axi_arvalid,
-      s_axi_awaddr(14 downto 0) => s_axi_awaddr(16 downto 2),
+      s_axi_awaddr(15 downto 0) => s_axi_awaddr(17 downto 2),
       s_axi_awid(0) => s_axi_awid(0),
       s_axi_awready => \^s_axi_awready\,
       s_axi_awvalid => s_axi_awvalid,
@@ -1026,7 +1046,7 @@ entity microblaze_axi_bram_ctrl_0_0 is
   port (
     s_axi_aclk : in STD_LOGIC;
     s_axi_aresetn : in STD_LOGIC;
-    s_axi_awaddr : in STD_LOGIC_VECTOR ( 16 downto 0 );
+    s_axi_awaddr : in STD_LOGIC_VECTOR ( 17 downto 0 );
     s_axi_awprot : in STD_LOGIC_VECTOR ( 2 downto 0 );
     s_axi_awvalid : in STD_LOGIC;
     s_axi_awready : out STD_LOGIC;
@@ -1037,7 +1057,7 @@ entity microblaze_axi_bram_ctrl_0_0 is
     s_axi_bresp : out STD_LOGIC_VECTOR ( 1 downto 0 );
     s_axi_bvalid : out STD_LOGIC;
     s_axi_bready : in STD_LOGIC;
-    s_axi_araddr : in STD_LOGIC_VECTOR ( 16 downto 0 );
+    s_axi_araddr : in STD_LOGIC_VECTOR ( 17 downto 0 );
     s_axi_arprot : in STD_LOGIC_VECTOR ( 2 downto 0 );
     s_axi_arvalid : in STD_LOGIC;
     s_axi_arready : out STD_LOGIC;
@@ -1049,7 +1069,7 @@ entity microblaze_axi_bram_ctrl_0_0 is
     bram_clk_a : out STD_LOGIC;
     bram_en_a : out STD_LOGIC;
     bram_we_a : out STD_LOGIC_VECTOR ( 3 downto 0 );
-    bram_addr_a : out STD_LOGIC_VECTOR ( 16 downto 0 );
+    bram_addr_a : out STD_LOGIC_VECTOR ( 17 downto 0 );
     bram_wrdata_a : out STD_LOGIC_VECTOR ( 31 downto 0 );
     bram_rddata_a : in STD_LOGIC_VECTOR ( 31 downto 0 )
   );
@@ -1075,7 +1095,7 @@ architecture STRUCTURE of microblaze_axi_bram_ctrl_0_0 is
   signal NLW_U0_s_axi_ctrl_rvalid_UNCONNECTED : STD_LOGIC;
   signal NLW_U0_s_axi_ctrl_wready_UNCONNECTED : STD_LOGIC;
   signal NLW_U0_s_axi_rlast_UNCONNECTED : STD_LOGIC;
-  signal NLW_U0_bram_addr_b_UNCONNECTED : STD_LOGIC_VECTOR ( 16 downto 0 );
+  signal NLW_U0_bram_addr_b_UNCONNECTED : STD_LOGIC_VECTOR ( 17 downto 0 );
   signal NLW_U0_bram_we_b_UNCONNECTED : STD_LOGIC_VECTOR ( 3 downto 0 );
   signal NLW_U0_bram_wrdata_b_UNCONNECTED : STD_LOGIC_VECTOR ( 31 downto 0 );
   signal NLW_U0_s_axi_bid_UNCONNECTED : STD_LOGIC_VECTOR ( 0 to 0 );
@@ -1084,7 +1104,7 @@ architecture STRUCTURE of microblaze_axi_bram_ctrl_0_0 is
   signal NLW_U0_s_axi_ctrl_rresp_UNCONNECTED : STD_LOGIC_VECTOR ( 1 downto 0 );
   signal NLW_U0_s_axi_rid_UNCONNECTED : STD_LOGIC_VECTOR ( 0 to 0 );
   attribute C_BRAM_ADDR_WIDTH : integer;
-  attribute C_BRAM_ADDR_WIDTH of U0 : label is 15;
+  attribute C_BRAM_ADDR_WIDTH of U0 : label is 16;
   attribute C_BRAM_INST_MODE : string;
   attribute C_BRAM_INST_MODE of U0 : label is "EXTERNAL";
   attribute C_ECC : integer;
@@ -1098,7 +1118,7 @@ architecture STRUCTURE of microblaze_axi_bram_ctrl_0_0 is
   attribute C_FAULT_INJECT : integer;
   attribute C_FAULT_INJECT of U0 : label is 0;
   attribute C_MEMORY_DEPTH : integer;
-  attribute C_MEMORY_DEPTH of U0 : label is 32768;
+  attribute C_MEMORY_DEPTH of U0 : label is 65536;
   attribute C_RD_CMD_OPTIMIZATION : integer;
   attribute C_RD_CMD_OPTIMIZATION of U0 : label is 0;
   attribute C_READ_LATENCY : integer;
@@ -1108,7 +1128,7 @@ architecture STRUCTURE of microblaze_axi_bram_ctrl_0_0 is
   attribute C_SINGLE_PORT_BRAM : integer;
   attribute C_SINGLE_PORT_BRAM of U0 : label is 1;
   attribute C_S_AXI_ADDR_WIDTH : integer;
-  attribute C_S_AXI_ADDR_WIDTH of U0 : label is 17;
+  attribute C_S_AXI_ADDR_WIDTH of U0 : label is 18;
   attribute C_S_AXI_CTRL_ADDR_WIDTH : integer;
   attribute C_S_AXI_CTRL_ADDR_WIDTH of U0 : label is 32;
   attribute C_S_AXI_CTRL_DATA_WIDTH : integer;
@@ -1127,7 +1147,7 @@ architecture STRUCTURE of microblaze_axi_bram_ctrl_0_0 is
   attribute x_interface_info of bram_en_a : signal is "xilinx.com:interface:bram:1.0 BRAM_PORTA EN";
   attribute x_interface_info of bram_rst_a : signal is "xilinx.com:interface:bram:1.0 BRAM_PORTA RST";
   attribute x_interface_parameter : string;
-  attribute x_interface_parameter of bram_rst_a : signal is "XIL_INTERFACENAME BRAM_PORTA, MASTER_TYPE BRAM_CTRL, MEM_SIZE 131072, MEM_WIDTH 32, MEM_ECC NONE, READ_WRITE_MODE READ_WRITE, READ_LATENCY 1";
+  attribute x_interface_parameter of bram_rst_a : signal is "XIL_INTERFACENAME BRAM_PORTA, MASTER_TYPE BRAM_CTRL, MEM_SIZE 262144, MEM_WIDTH 32, MEM_ECC NONE, READ_WRITE_MODE READ_WRITE, READ_LATENCY 1";
   attribute x_interface_info of s_axi_aclk : signal is "xilinx.com:signal:clock:1.0 CLKIF CLK";
   attribute x_interface_parameter of s_axi_aclk : signal is "XIL_INTERFACENAME CLKIF, ASSOCIATED_BUSIF S_AXI:S_AXI_CTRL, ASSOCIATED_RESET s_axi_aresetn, FREQ_HZ 100000000, PHASE 0.000, CLK_DOMAIN microblaze_clk_100MHz, INSERT_VIP 0";
   attribute x_interface_info of s_axi_aresetn : signal is "xilinx.com:signal:reset:1.0 RSTIF RST";
@@ -1149,7 +1169,7 @@ architecture STRUCTURE of microblaze_axi_bram_ctrl_0_0 is
   attribute x_interface_info of s_axi_araddr : signal is "xilinx.com:interface:aximm:1.0 S_AXI ARADDR";
   attribute x_interface_info of s_axi_arprot : signal is "xilinx.com:interface:aximm:1.0 S_AXI ARPROT";
   attribute x_interface_info of s_axi_awaddr : signal is "xilinx.com:interface:aximm:1.0 S_AXI AWADDR";
-  attribute x_interface_parameter of s_axi_awaddr : signal is "XIL_INTERFACENAME S_AXI, DATA_WIDTH 32, PROTOCOL AXI4LITE, FREQ_HZ 100000000, ID_WIDTH 0, ADDR_WIDTH 17, AWUSER_WIDTH 0, ARUSER_WIDTH 0, WUSER_WIDTH 0, RUSER_WIDTH 0, BUSER_WIDTH 0, READ_WRITE_MODE READ_WRITE, HAS_BURST 0, HAS_LOCK 0, HAS_PROT 1, HAS_CACHE 0, HAS_QOS 0, HAS_REGION 0, HAS_WSTRB 1, HAS_BRESP 1, HAS_RRESP 1, SUPPORTS_NARROW_BURST 0, NUM_READ_OUTSTANDING 1, NUM_WRITE_OUTSTANDING 1, MAX_BURST_LENGTH 1, PHASE 0.000, CLK_DOMAIN microblaze_clk_100MHz, NUM_READ_THREADS 1, NUM_WRITE_THREADS 1, RUSER_BITS_PER_BYTE 0, WUSER_BITS_PER_BYTE 0, INSERT_VIP 0";
+  attribute x_interface_parameter of s_axi_awaddr : signal is "XIL_INTERFACENAME S_AXI, DATA_WIDTH 32, PROTOCOL AXI4LITE, FREQ_HZ 100000000, ID_WIDTH 0, ADDR_WIDTH 18, AWUSER_WIDTH 0, ARUSER_WIDTH 0, WUSER_WIDTH 0, RUSER_WIDTH 0, BUSER_WIDTH 0, READ_WRITE_MODE READ_WRITE, HAS_BURST 0, HAS_LOCK 0, HAS_PROT 1, HAS_CACHE 0, HAS_QOS 0, HAS_REGION 0, HAS_WSTRB 1, HAS_BRESP 1, HAS_RRESP 1, SUPPORTS_NARROW_BURST 0, NUM_READ_OUTSTANDING 1, NUM_WRITE_OUTSTANDING 1, MAX_BURST_LENGTH 1, PHASE 0.000, CLK_DOMAIN microblaze_clk_100MHz, NUM_READ_THREADS 1, NUM_WRITE_THREADS 1, RUSER_BITS_PER_BYTE 0, WUSER_BITS_PER_BYTE 0, INSERT_VIP 0";
   attribute x_interface_info of s_axi_awprot : signal is "xilinx.com:interface:aximm:1.0 S_AXI AWPROT";
   attribute x_interface_info of s_axi_bresp : signal is "xilinx.com:interface:aximm:1.0 S_AXI BRESP";
   attribute x_interface_info of s_axi_rdata : signal is "xilinx.com:interface:aximm:1.0 S_AXI RDATA";
@@ -1159,8 +1179,8 @@ architecture STRUCTURE of microblaze_axi_bram_ctrl_0_0 is
 begin
 U0: entity work.microblaze_axi_bram_ctrl_0_0_axi_bram_ctrl
      port map (
-      bram_addr_a(16 downto 0) => bram_addr_a(16 downto 0),
-      bram_addr_b(16 downto 0) => NLW_U0_bram_addr_b_UNCONNECTED(16 downto 0),
+      bram_addr_a(17 downto 0) => bram_addr_a(17 downto 0),
+      bram_addr_b(17 downto 0) => NLW_U0_bram_addr_b_UNCONNECTED(17 downto 0),
       bram_clk_a => bram_clk_a,
       bram_clk_b => NLW_U0_bram_clk_b_UNCONNECTED,
       bram_en_a => bram_en_a,
@@ -1176,7 +1196,7 @@ U0: entity work.microblaze_axi_bram_ctrl_0_0_axi_bram_ctrl
       ecc_interrupt => NLW_U0_ecc_interrupt_UNCONNECTED,
       ecc_ue => NLW_U0_ecc_ue_UNCONNECTED,
       s_axi_aclk => s_axi_aclk,
-      s_axi_araddr(16 downto 0) => s_axi_araddr(16 downto 0),
+      s_axi_araddr(17 downto 0) => s_axi_araddr(17 downto 0),
       s_axi_arburst(1 downto 0) => B"00",
       s_axi_arcache(3 downto 0) => B"0000",
       s_axi_aresetn => s_axi_aresetn,
@@ -1187,7 +1207,7 @@ U0: entity work.microblaze_axi_bram_ctrl_0_0_axi_bram_ctrl
       s_axi_arready => s_axi_arready,
       s_axi_arsize(2 downto 0) => B"000",
       s_axi_arvalid => s_axi_arvalid,
-      s_axi_awaddr(16 downto 0) => s_axi_awaddr(16 downto 0),
+      s_axi_awaddr(17 downto 0) => s_axi_awaddr(17 downto 0),
       s_axi_awburst(1 downto 0) => B"00",
       s_axi_awcache(3 downto 0) => B"0000",
       s_axi_awid(0) => '0',

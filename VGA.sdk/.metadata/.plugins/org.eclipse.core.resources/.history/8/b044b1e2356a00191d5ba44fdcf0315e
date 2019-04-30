@@ -1,0 +1,60 @@
+/*
+ * main.c
+ *
+ *  Created on: Apr 26, 2019
+ *      Author: Jacob Boline
+ */
+
+#include "xparameters.h"
+#include "xbram.h"
+#include <stdio.h>
+
+#define BRAM_DEVICE_ID		XPAR_BRAM_0_DEVICE_ID
+#define BRAM_BASE_ADDR		XPAR_BRAM_0_BASEADDR
+
+XBram Bram;	/* The Instance of the BRAM Driver */
+
+int main(void)
+{
+	int Status;
+
+	XBram_Config *ConfigPtr;
+
+	/*
+	 * Initialize the BRAM driver. If an error occurs then exit
+	 */
+
+	/*
+	 * Lookup configuration data in the device configuration table.
+	 * Use this configuration info down below when initializing this
+	 * driver.
+	 */
+	ConfigPtr = XBram_LookupConfig(BRAM_DEVICE_ID);
+	if (ConfigPtr == (XBram_Config *) NULL) {
+		return XST_FAILURE;
+	}
+
+	Status = XBram_CfgInitialize(&Bram, ConfigPtr,
+					 ConfigPtr->CtrlBaseAddress);
+	if (Status != XST_SUCCESS) {
+		return XST_FAILURE;
+	}
+
+	int idx;
+	for(idx = 0; idx < 82; idx++)
+	{
+		XBram_WriteReg(BRAM_BASE_ADDR, idx, 0x00000000);
+	}
+
+//	XBram_WriteReg(BRAM_BASE_ADDR, 0, 0xAAAAAAAA);
+//	XBram_WriteReg(BRAM_BASE_ADDR, 1, 0xAAAAAAAA);
+//	XBram_WriteReg(BRAM_BASE_ADDR, 2, 0xAAAAAAAA);
+//	XBram_WriteReg(BRAM_BASE_ADDR, 3, 0xAAAAAAAA);
+//	XBram_WriteReg(BRAM_BASE_ADDR, 4, 0xAAAAAAAA);
+//	XBram_WriteReg(BRAM_BASE_ADDR, 5, 0xAAAAAAAA);
+//	XBram_WriteReg(BRAM_BASE_ADDR, 6, 0xAAAAAAAA);
+//	XBram_WriteReg(BRAM_BASE_ADDR, 7, 0xAAAAAAAA);
+//	XBram_WriteReg(BRAM_BASE_ADDR, 9, 0xAAAAAAAA);
+
+	return XST_SUCCESS;
+}

@@ -2,11 +2,11 @@
 # Webtalk v2018.3 (64-bit)
 # SW Build 2405991 on Thu Dec  6 23:38:27 MST 2018
 # 
-# Start of session at: Fri Apr 26 15:48:18 2019
-# Process ID: 10620
-# Current directory: C:/Users/xtjac/School/VGA-Controller/VGA.sdk/webtalk
+# Start of session at: Mon Apr 29 17:18:07 2019
+# Process ID: 19780
+# Current directory: C:/Users/Jacob/School/VGA-Controller/VGA.sdk/webtalk
 # Command line: wbtcv.exe -mode batch -source sdk_webtalk.tcl
-# Log file: C:/Users/xtjac/School/VGA-Controller/VGA.sdk/webtalk/webtalk.log
-# Journal file: C:/Users/xtjac/School/VGA-Controller/VGA.sdk/webtalk\webtalk.jou
+# Log file: C:/Users/Jacob/School/VGA-Controller/VGA.sdk/webtalk/webtalk.log
+# Journal file: C:/Users/Jacob/School/VGA-Controller/VGA.sdk/webtalk\webtalk.jou
 #-----------------------------------------------------------
 source sdk_webtalk.tcl

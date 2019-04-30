@@ -1,8 +1,8 @@
 //Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 //--------------------------------------------------------------------------------
 //Tool Version: Vivado v.2018.3 (win64) Build 2405991 Thu Dec  6 23:38:27 MST 2018
-//Date        : Sat Apr 27 12:25:53 2019
-//Host        : DESKTOP-KBPHQS1 running 64-bit major release  (build 9200)
+//Date        : Mon Apr 29 17:41:22 2019
+//Host        : DESKTOP-S0CCCTL running 64-bit major release  (build 9200)
 //Command     : generate_target microblaze.bd
 //Design      : microblaze
 //Purpose     : IP block netlist
@@ -306,7 +306,7 @@ module microblaze
   (* X_INTERFACE_INFO = "xilinx.com:signal:clockenable:1.0 CE.LOCKED CE" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME CE.LOCKED, POLARITY ACTIVE_LOW" *) input locked;
   (* X_INTERFACE_INFO = "xilinx.com:signal:reset:1.0 RST.RST RST" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME RST.RST, INSERT_VIP 0, POLARITY ACTIVE_HIGH" *) input rst;
 
-  wire [16:0]axi_bram_ctrl_0_BRAM_PORTA_ADDR;
+  wire [17:0]axi_bram_ctrl_0_BRAM_PORTA_ADDR;
   wire axi_bram_ctrl_0_BRAM_PORTA_CLK;
   wire [31:0]axi_bram_ctrl_0_BRAM_PORTA_DIN;
   wire [31:0]axi_bram_ctrl_0_BRAM_PORTA_DOUT;
@@ -432,12 +432,12 @@ module microblaze
         .bram_we_a(axi_bram_ctrl_0_BRAM_PORTA_WE),
         .bram_wrdata_a(axi_bram_ctrl_0_BRAM_PORTA_DIN),
         .s_axi_aclk(microblaze_0_Clk),
-        .s_axi_araddr(microblaze_0_axi_periph_M01_AXI_ARADDR[16:0]),
+        .s_axi_araddr(microblaze_0_axi_periph_M01_AXI_ARADDR[17:0]),
         .s_axi_aresetn(rst_clk_100MHz_100M_peripheral_aresetn),
         .s_axi_arprot(microblaze_0_axi_periph_M01_AXI_ARPROT),
         .s_axi_arready(microblaze_0_axi_periph_M01_AXI_ARREADY),
         .s_axi_arvalid(microblaze_0_axi_periph_M01_AXI_ARVALID),
-        .s_axi_awaddr(microblaze_0_axi_periph_M01_AXI_AWADDR[16:0]),
+        .s_axi_awaddr(microblaze_0_axi_periph_M01_AXI_AWADDR[17:0]),
         .s_axi_awprot(microblaze_0_axi_periph_M01_AXI_AWPROT),
         .s_axi_awready(microblaze_0_axi_periph_M01_AXI_AWREADY),
         .s_axi_awvalid(microblaze_0_axi_periph_M01_AXI_AWVALID),
@@ -453,7 +453,7 @@ module microblaze
         .s_axi_wstrb(microblaze_0_axi_periph_M01_AXI_WSTRB),
         .s_axi_wvalid(microblaze_0_axi_periph_M01_AXI_WVALID));
   microblaze_blk_mem_gen_0_0 blk_mem_gen_0
-       (.addra({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,axi_bram_ctrl_0_BRAM_PORTA_ADDR}),
+       (.addra({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,axi_bram_ctrl_0_BRAM_PORTA_ADDR}),
         .addrb(bram_addr_1),
         .clka(axi_bram_ctrl_0_BRAM_PORTA_CLK),
         .clkb(bram_clk_1),

@@ -1,0 +1,114 @@
+/*
+ * main.c
+ *
+ *  Created on: Apr 26, 2019
+ *      Author: Jacob Boline
+ */
+
+#include "xparameters.h"
+#include "xbram.h"
+#include <stdio.h>
+
+#define BRAM_DEVICE_ID		XPAR_BRAM_0_DEVICE_ID
+#define BRAM_BASE_ADDR		XPAR_BRAM_0_BASEADDR
+
+XBram Bram;	/* The Instance of the BRAM Driver */
+
+int main(void)
+{
+	int Status;
+
+	XBram_Config *ConfigPtr;
+
+	/*
+	 * Initialize the BRAM driver. If an error occurs then exit
+	 */
+
+	/*
+	 * Lookup configuration data in the device configuration table.
+	 * Use this configuration info down below when initializing this
+	 * driver.
+	 */
+	ConfigPtr = XBram_LookupConfig(BRAM_DEVICE_ID);
+	if (ConfigPtr == (XBram_Config *) NULL) {
+		return XST_FAILURE;
+	}
+
+	Status = XBram_CfgInitialize(&Bram, ConfigPtr,
+					 ConfigPtr->CtrlBaseAddress);
+	if (Status != XST_SUCCESS) {
+		return XST_FAILURE;
+	}
+
+	int idx;
+	for(idx = 0; idx < 80*40*12; idx++)
+	{
+		XBram_WriteReg(BRAM_BASE_ADDR, 4*idx, 0x00000000);
+	}
+
+//	int idx;
+//	for(idx = 0; idx < 80*40; idx++)
+//	{
+//		XBram_WriteReg(BRAM_BASE_ADDR, 4*idx, 0x11111111);
+//	}
+//
+//	for(idx = 80*40; idx < 80*40*2; idx++)
+//	{
+//		XBram_WriteReg(BRAM_BASE_ADDR, 4*idx, 0x22222222);
+//	}
+//
+//	for(idx = 80*40*2; idx < 80*40*3; idx++)
+//	{
+//		XBram_WriteReg(BRAM_BASE_ADDR, 4*idx, 0x33333333);
+//	}
+//
+//	for(idx = 80*40*3; idx < 80*40*4; idx++)
+//	{
+//		XBram_WriteReg(BRAM_BASE_ADDR, 4*idx, 0x44444444);
+//	}
+//
+//	for(idx = 80*40*4; idx < 80*40*5; idx++)
+//	{
+//		XBram_WriteReg(BRAM_BASE_ADDR, 4*idx, 0x55555555);
+//	}
+//
+//	for(idx = 80*40*5; idx < 80*40*6; idx++)
+//	{
+//		XBram_WriteReg(BRAM_BASE_ADDR, 4*idx, 0x66666666);
+//	}
+//
+//	for(idx = 80*40*6; idx < 80*40*7; idx++)
+//	{
+//		XBram_WriteReg(BRAM_BASE_ADDR, 4*idx, 0x77777777);
+//	}
+//
+//	for(idx = 80*40*7; idx < 80*40*8; idx++)
+//	{
+//		XBram_WriteReg(BRAM_BASE_ADDR, 4*idx, 0x88888888);
+//	}
+//
+//	for(idx = 80*40*8; idx < 80*40*9; idx++)
+//	{
+//		XBram_WriteReg(BRAM_BASE_ADDR, 4*idx, 0x99999999);
+//	}
+//
+//	for(idx = 80*40*9; idx < 80*40*10; idx++)
+//	{
+//		XBram_WriteReg(BRAM_BASE_ADDR, 4*idx, 0xAAAAAAAA);
+//	}
+//
+//	for(idx = 80*40*10; idx < 80*40*11; idx++)
+//	{
+//		XBram_WriteReg(BRAM_BASE_ADDR, 4*idx, 0xBBBBBBBB);
+//	}
+//
+//	for(idx = 80*40*11; idx < 80*40*12; idx++)
+//	{
+//		XBram_WriteReg(BRAM_BASE_ADDR, 4*idx, 0xCCCCCCCC);
+//	}
+
+//	XBram_WriteReg(BRAM_BASE_ADDR, 0, 0x23456789);
+//	XBram_WriteReg(BRAM_BASE_ADDR, 4, 0x12345678);
+
+	return XST_SUCCESS;
+}

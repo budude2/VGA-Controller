@@ -2,7 +2,7 @@
 <section name="Workbench">
 	<item value="Auto Detect" key="VGA_hw_platform_0-device"/>
 	<item value="false" key="VGA_hw_platform_0-partial_bit"/>
-	<item value="C:\Users\xtjac\School\VGA-Controller\VGA.sdk\VGA\Debug\VGA.elf" key="VGA_hw_platform_0-microblaze_0-initElf"/>
+	<item value="C:\Users\Jacob\School\VGA-Controller\VGA.sdk\VGA\Debug\VGA.elf" key="VGA_hw_platform_0-microblaze_0-initElf"/>
 	<item value="VGA.mmi" key="VGA_hw_platform_0-bmmFile"/>
 	<item value="VGA_hw_platform_0" key="programfpga.hwplatform"/>
 	<item value="Local" key="VGA_hw_platform_0-target"/>

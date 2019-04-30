@@ -1,10 +1,10 @@
 // Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2018.3 (win64) Build 2405991 Thu Dec  6 23:38:27 MST 2018
-// Date        : Sat Apr 27 10:10:46 2019
-// Host        : DESKTOP-KBPHQS1 running 64-bit major release  (build 9200)
-// Command     : write_verilog -force -mode synth_stub -rename_top microblaze_axi_bram_ctrl_0_0 -prefix
-//               microblaze_axi_bram_ctrl_0_0_ microblaze_axi_bram_ctrl_0_0_stub.v
+// Date        : Mon Apr 29 17:42:07 2019
+// Host        : DESKTOP-S0CCCTL running 64-bit major release  (build 9200)
+// Command     : write_verilog -force -mode synth_stub
+//               C:/Users/Jacob/School/VGA-Controller/rtl/microblaze/microblaze/ip/microblaze_axi_bram_ctrl_0_0/microblaze_axi_bram_ctrl_0_0_stub.v
 // Design      : microblaze_axi_bram_ctrl_0_0
 // Purpose     : Stub declaration of top-level module interface
 // Device      : xc7a100tcsg324-1
@@ -19,10 +19,10 @@ module microblaze_axi_bram_ctrl_0_0(s_axi_aclk, s_axi_aresetn, s_axi_awaddr,
   s_axi_wready, s_axi_bresp, s_axi_bvalid, s_axi_bready, s_axi_araddr, s_axi_arprot, 
   s_axi_arvalid, s_axi_arready, s_axi_rdata, s_axi_rresp, s_axi_rvalid, s_axi_rready, 
   bram_rst_a, bram_clk_a, bram_en_a, bram_we_a, bram_addr_a, bram_wrdata_a, bram_rddata_a)
-/* synthesis syn_black_box black_box_pad_pin="s_axi_aclk,s_axi_aresetn,s_axi_awaddr[16:0],s_axi_awprot[2:0],s_axi_awvalid,s_axi_awready,s_axi_wdata[31:0],s_axi_wstrb[3:0],s_axi_wvalid,s_axi_wready,s_axi_bresp[1:0],s_axi_bvalid,s_axi_bready,s_axi_araddr[16:0],s_axi_arprot[2:0],s_axi_arvalid,s_axi_arready,s_axi_rdata[31:0],s_axi_rresp[1:0],s_axi_rvalid,s_axi_rready,bram_rst_a,bram_clk_a,bram_en_a,bram_we_a[3:0],bram_addr_a[16:0],bram_wrdata_a[31:0],bram_rddata_a[31:0]" */;
+/* synthesis syn_black_box black_box_pad_pin="s_axi_aclk,s_axi_aresetn,s_axi_awaddr[17:0],s_axi_awprot[2:0],s_axi_awvalid,s_axi_awready,s_axi_wdata[31:0],s_axi_wstrb[3:0],s_axi_wvalid,s_axi_wready,s_axi_bresp[1:0],s_axi_bvalid,s_axi_bready,s_axi_araddr[17:0],s_axi_arprot[2:0],s_axi_arvalid,s_axi_arready,s_axi_rdata[31:0],s_axi_rresp[1:0],s_axi_rvalid,s_axi_rready,bram_rst_a,bram_clk_a,bram_en_a,bram_we_a[3:0],bram_addr_a[17:0],bram_wrdata_a[31:0],bram_rddata_a[31:0]" */;
   input s_axi_aclk;
   input s_axi_aresetn;
-  input [16:0]s_axi_awaddr;
+  input [17:0]s_axi_awaddr;
   input [2:0]s_axi_awprot;
   input s_axi_awvalid;
   output s_axi_awready;
@@ -33,7 +33,7 @@ module microblaze_axi_bram_ctrl_0_0(s_axi_aclk, s_axi_aresetn, s_axi_awaddr,
   output [1:0]s_axi_bresp;
   output s_axi_bvalid;
   input s_axi_bready;
-  input [16:0]s_axi_araddr;
+  input [17:0]s_axi_araddr;
   input [2:0]s_axi_arprot;
   input s_axi_arvalid;
   output s_axi_arready;
@@ -45,7 +45,7 @@ module microblaze_axi_bram_ctrl_0_0(s_axi_aclk, s_axi_aresetn, s_axi_awaddr,
   output bram_clk_a;
   output bram_en_a;
   output [3:0]bram_we_a;
-  output [16:0]bram_addr_a;
+  output [17:0]bram_addr_a;
   output [31:0]bram_wrdata_a;
   input [31:0]bram_rddata_a;
 endmodule
