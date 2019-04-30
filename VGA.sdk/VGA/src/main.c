@@ -8,6 +8,7 @@
 #include "xparameters.h"
 #include "xbram.h"
 #include <stdio.h>
+#include "drawFunctions.h"
 
 #define BRAM_DEVICE_ID		XPAR_BRAM_0_DEVICE_ID
 #define BRAM_BASE_ADDR		XPAR_BRAM_0_BASEADDR
@@ -40,66 +41,7 @@ int main(void)
 		return XST_FAILURE;
 	}
 
-	int idx;
-	for(idx = 0; idx < 80*40; idx++)
-	{
-		XBram_WriteReg(BRAM_BASE_ADDR, 4*idx, 0x11111111);
-	}
-
-	for(idx = 80*40; idx < 80*40*2; idx++)
-	{
-		XBram_WriteReg(BRAM_BASE_ADDR, 4*idx, 0x22222222);
-	}
-
-	for(idx = 80*40*2; idx < 80*40*3; idx++)
-	{
-		XBram_WriteReg(BRAM_BASE_ADDR, 4*idx, 0x33333333);
-	}
-
-	for(idx = 80*40*3; idx < 80*40*4; idx++)
-	{
-		XBram_WriteReg(BRAM_BASE_ADDR, 4*idx, 0x44444444);
-	}
-
-	for(idx = 80*40*4; idx < 80*40*5; idx++)
-	{
-		XBram_WriteReg(BRAM_BASE_ADDR, 4*idx, 0x55555555);
-	}
-
-	for(idx = 80*40*5; idx < 80*40*6; idx++)
-	{
-		XBram_WriteReg(BRAM_BASE_ADDR, 4*idx, 0x66666666);
-	}
-
-	for(idx = 80*40*6; idx < 80*40*7; idx++)
-	{
-		XBram_WriteReg(BRAM_BASE_ADDR, 4*idx, 0x77777777);
-	}
-
-	for(idx = 80*40*7; idx < 80*40*8; idx++)
-	{
-		XBram_WriteReg(BRAM_BASE_ADDR, 4*idx, 0x88888888);
-	}
-
-	for(idx = 80*40*8; idx < 80*40*9; idx++)
-	{
-		XBram_WriteReg(BRAM_BASE_ADDR, 4*idx, 0x99999999);
-	}
-
-	for(idx = 80*40*9; idx < 80*40*10; idx++)
-	{
-		XBram_WriteReg(BRAM_BASE_ADDR, 4*idx, 0xAAAAAAAA);
-	}
-
-	for(idx = 80*40*10; idx < 80*40*11; idx++)
-	{
-		XBram_WriteReg(BRAM_BASE_ADDR, 4*idx, 0xBBBBBBBB);
-	}
-
-	for(idx = 80*40*11; idx < 80*40*12; idx++)
-	{
-		XBram_WriteReg(BRAM_BASE_ADDR, 4*idx, 0xCCCCCCCC);
-	}
+	drawPixel(80, 80, 0xA);
 
 //	XBram_WriteReg(BRAM_BASE_ADDR, 0, 0x23456789);
 //	XBram_WriteReg(BRAM_BASE_ADDR, 4, 0x12345678);
