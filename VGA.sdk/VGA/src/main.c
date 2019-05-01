@@ -9,6 +9,7 @@
 #include "xbram.h"
 #include <stdio.h>
 #include "drawFunctions.h"
+#include <stdbool.h>
 
 #define BRAM_DEVICE_ID		XPAR_BRAM_0_DEVICE_ID
 #define BRAM_BASE_ADDR		XPAR_BRAM_0_BASEADDR
@@ -41,10 +42,16 @@ int main(void)
 		return XST_FAILURE;
 	}
 
-	drawPixel(80, 80, 0xA);
+	//drawPixel(7, 0, 0x4, false);
+	//drawPixel(0, 0, 0x4, true);
+	//drawPixel(8, 0, 0x4, false);
+//	drawPixel(80, 80, 0xA);
+	//drawPixel(639, 479, 0xA, false);
 
 //	XBram_WriteReg(BRAM_BASE_ADDR, 0, 0x23456789);
 //	XBram_WriteReg(BRAM_BASE_ADDR, 4, 0x12345678);
+
+	clearScreen();
 
 	return XST_SUCCESS;
 }
