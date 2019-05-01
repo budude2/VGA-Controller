@@ -41,7 +41,7 @@ uint8_t drawPixel(uint16_t x, uint16_t y, uint8_t value, _Bool overwrite)
     }
 }
 
-uint8_t drawHorzLine(uint16_t x1, uint16_t x2, uint16_t y, uint8_t value)
+uint8_t drawHorzLine(uint16_t x1, uint16_t x2, uint16_t y, uint8_t value, _Bool overwrite)
 {
 	if(x1 > x2)
 	{
@@ -49,7 +49,7 @@ uint8_t drawHorzLine(uint16_t x1, uint16_t x2, uint16_t y, uint8_t value)
 	}
 	else
 	{
-		uint32_t dataWord, startWord, stopWord, startAddr, stopAddr;
+		uint32_t dataWord, startWord, stopWord, currWord, startAddr, stopAddr;
 		uint16_t dist, idx;
 		uint8_t x1_mod, x2_mod;
 
@@ -67,6 +67,12 @@ uint8_t drawHorzLine(uint16_t x1, uint16_t x2, uint16_t y, uint8_t value)
 		{
 			idx = 1;
 			startWord = dataWord >> x1_mod * 4;
+			if(overwrite == false)
+			{
+				currWord = XBram_ReadReg(BRAM_BASE_ADDR, 4*startAddr);
+				currWord = currWord & 0xFFFFFFFF << ((8 - x1_mod)*4);;
+				startWord = startWord | currWord;
+			}
 			XBram_WriteReg(BRAM_BASE_ADDR, 4*startAddr, startWord);
 		}
 		else
@@ -74,12 +80,21 @@ uint8_t drawHorzLine(uint16_t x1, uint16_t x2, uint16_t y, uint8_t value)
 			idx = 0;
 		}
 
-		for(idx; idx <= dist; idx++)
+		for(;idx <= dist; idx++)
 		{
 			XBram_WriteReg(BRAM_BASE_ADDR, 4*(idx + startAddr), dataWord);
 		}
 
 		stopWord = dataWord << ((7 - x2_mod)*4);
+		if(overwrite == false)
+		{
+			currWord = XBram_ReadReg(BRAM_BASE_ADDR, 4*stopAddr);
+			if(x2_mod != 7)
+			{
+				currWord = currWord & (0xFFFFFFFF >> ((x2_mod + 1)*4));
+				stopWord = stopWord | currWord;
+			}
+		}
 		XBram_WriteReg(BRAM_BASE_ADDR, 4*stopAddr, stopWord);
 		return 0;
 	}

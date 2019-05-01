@@ -46,7 +46,12 @@ int main(void)
 
 	for(int idx = 0; idx < 479; idx++)
 	{
-		drawHorzLine(0 + idx, 639 - idx, 0 + idx, 0xA);
+		drawHorzLine(0 + idx, 639 - idx, 0 + idx, 0xA, true);
+	}
+
+	for(int idx = 0; idx < 479; idx++)
+	{
+		drawHorzLine(0 + idx, 639 - idx, 479 - idx, 0x4, false);
 	}
 
 	return XST_SUCCESS;
