@@ -42,16 +42,12 @@ int main(void)
 		return XST_FAILURE;
 	}
 
-	//drawPixel(7, 0, 0x4, false);
-	//drawPixel(0, 0, 0x4, true);
-	//drawPixel(8, 0, 0x4, false);
-//	drawPixel(80, 80, 0xA);
-	//drawPixel(639, 479, 0xA, false);
-
-//	XBram_WriteReg(BRAM_BASE_ADDR, 0, 0x23456789);
-//	XBram_WriteReg(BRAM_BASE_ADDR, 4, 0x12345678);
-
 	clearScreen();
+
+	for(int idx = 0; idx < 479; idx++)
+	{
+		drawHorzLine(0 + idx, 639 - idx, 0 + idx, 0xA);
+	}
 
 	return XST_SUCCESS;
 }
