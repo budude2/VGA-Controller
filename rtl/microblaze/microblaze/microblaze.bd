@@ -1,7 +1,7 @@
 {
   "design": {
     "design_info": {
-      "boundary_crc": "0x43FE98F22DF30F42",
+      "boundary_crc": "0xB8784BFEA3CC9F01",
       "device": "xc7a100tcsg324-1",
       "name": "microblaze",
       "synth_flow_mode": "Hierarchical",
@@ -30,7 +30,7 @@
       "blk_mem_gen_0": ""
     },
     "ports": {
-      "clk_100MHz": {
+      "clk_123m": {
         "type": "clk",
         "direction": "I",
         "parameters": {
@@ -172,6 +172,9 @@
           "C_USE_BARREL": {
             "value": "1"
           },
+          "C_USE_BRANCH_TARGET_CACHE": {
+            "value": "1"
+          },
           "C_USE_DIV": {
             "value": "1"
           },
@@ -274,16 +277,22 @@
           }
         },
         "interface_nets": {
-          "microblaze_0_dlmb_cntlr": {
-            "interface_ports": [
-              "dlmb_bram_if_cntlr/BRAM_PORT",
-              "lmb_bram/BRAM_PORTA"
-            ]
-          },
           "microblaze_0_ilmb": {
             "interface_ports": [
               "ILMB",
               "ilmb_v10/LMB_M"
+            ]
+          },
+          "microblaze_0_dlmb_bus": {
+            "interface_ports": [
+              "dlmb_v10/LMB_Sl_0",
+              "dlmb_bram_if_cntlr/SLMB"
+            ]
+          },
+          "microblaze_0_ilmb_cntlr": {
+            "interface_ports": [
+              "ilmb_bram_if_cntlr/BRAM_PORT",
+              "lmb_bram/BRAM_PORTB"
             ]
           },
           "microblaze_0_dlmb": {
@@ -298,16 +307,10 @@
               "ilmb_bram_if_cntlr/SLMB"
             ]
           },
-          "microblaze_0_ilmb_cntlr": {
+          "microblaze_0_dlmb_cntlr": {
             "interface_ports": [
-              "ilmb_bram_if_cntlr/BRAM_PORT",
-              "lmb_bram/BRAM_PORTB"
-            ]
-          },
-          "microblaze_0_dlmb_bus": {
-            "interface_ports": [
-              "dlmb_v10/LMB_Sl_0",
-              "dlmb_bram_if_cntlr/SLMB"
+              "dlmb_bram_if_cntlr/BRAM_PORT",
+              "lmb_bram/BRAM_PORTA"
             ]
           }
         },
@@ -597,6 +600,12 @@
           }
         },
         "interface_nets": {
+          "microblaze_0_axi_periph_to_s00_couplers": {
+            "interface_ports": [
+              "S00_AXI",
+              "s00_couplers/S_AXI"
+            ]
+          },
           "s00_couplers_to_xbar": {
             "interface_ports": [
               "s00_couplers/M_AXI",
@@ -625,12 +634,6 @@
             "interface_ports": [
               "xbar/M01_AXI",
               "m01_couplers/S_AXI"
-            ]
-          },
-          "microblaze_0_axi_periph_to_s00_couplers": {
-            "interface_ports": [
-              "S00_AXI",
-              "s00_couplers/S_AXI"
             ]
           }
         },
@@ -795,16 +798,10 @@
           "microblaze_0_axi_intc/s_axi"
         ]
       },
-      "microblaze_0_dlmb_1": {
+      "microblaze_0_interrupt": {
         "interface_ports": [
-          "microblaze_0/DLMB",
-          "microblaze_0_local_memory/DLMB"
-        ]
-      },
-      "microblaze_0_axi_periph_M01_AXI": {
-        "interface_ports": [
-          "microblaze_0_axi_periph/M01_AXI",
-          "axi_bram_ctrl_0/S_AXI"
+          "microblaze_0_axi_intc/interrupt",
+          "microblaze_0/INTERRUPT"
         ]
       },
       "microblaze_0_debug": {
@@ -813,10 +810,16 @@
           "microblaze_0/DEBUG"
         ]
       },
-      "microblaze_0_interrupt": {
+      "microblaze_0_axi_periph_M01_AXI": {
         "interface_ports": [
-          "microblaze_0_axi_intc/interrupt",
-          "microblaze_0/INTERRUPT"
+          "microblaze_0_axi_periph/M01_AXI",
+          "axi_bram_ctrl_0/S_AXI"
+        ]
+      },
+      "axi_bram_ctrl_0_BRAM_PORTA": {
+        "interface_ports": [
+          "axi_bram_ctrl_0/BRAM_PORTA",
+          "blk_mem_gen_0/BRAM_PORTA"
         ]
       },
       "microblaze_0_axi_dp": {
@@ -831,17 +834,17 @@
           "microblaze_0_local_memory/ILMB"
         ]
       },
-      "axi_bram_ctrl_0_BRAM_PORTA": {
+      "microblaze_0_dlmb_1": {
         "interface_ports": [
-          "axi_bram_ctrl_0/BRAM_PORTA",
-          "blk_mem_gen_0/BRAM_PORTA"
+          "microblaze_0/DLMB",
+          "microblaze_0_local_memory/DLMB"
         ]
       }
     },
     "nets": {
       "microblaze_0_Clk": {
         "ports": [
-          "clk_100MHz",
+          "clk_123m",
           "microblaze_0/Clk",
           "microblaze_0_axi_periph/ACLK",
           "microblaze_0_axi_periph/S00_ACLK",

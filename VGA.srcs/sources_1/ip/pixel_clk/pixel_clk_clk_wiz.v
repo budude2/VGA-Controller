@@ -57,7 +57,7 @@
 //   Clock     Freq (MHz)  (degrees)    (%)     Jitter (ps)  Error (ps)
 //----------------------------------------------------------------------------
 // _clk_25m____25.176______0.000______50.0______312.944____298.950
-// clk_100m_o___123.125______0.000______50.0______238.494____298.950
+// clk_123m___123.125______0.000______50.0______238.494____298.950
 //
 //----------------------------------------------------------------------------
 // Input Clock   Freq (MHz)    Input Jitter (UI)
@@ -71,7 +71,7 @@ module pixel_clk_clk_wiz
  (// Clock in ports
   // Clock out ports
   output        clk_25m,
-  output        clk_100m_o,
+  output        clk_123m,
   // Status and control signals
   input         reset,
   output        locked,
@@ -96,7 +96,7 @@ wire clk_in2_pixel_clk;
   //    * Unused outputs are labeled unused
 
   wire        clk_25m_pixel_clk;
-  wire        clk_100m_o_pixel_clk;
+  wire        clk_123m_pixel_clk;
   wire        clk_out3_pixel_clk;
   wire        clk_out4_pixel_clk;
   wire        clk_out5_pixel_clk;
@@ -148,7 +148,7 @@ wire clk_in2_pixel_clk;
     .CLKFBOUTB           (clkfboutb_unused),
     .CLKOUT0             (clk_25m_pixel_clk),
     .CLKOUT0B            (clkout0b_unused),
-    .CLKOUT1             (clk_100m_o_pixel_clk),
+    .CLKOUT1             (clk_123m_pixel_clk),
     .CLKOUT1B            (clkout1b_unused),
     .CLKOUT2             (clkout2_unused),
     .CLKOUT2B            (clkout2b_unused),
@@ -205,8 +205,8 @@ wire clk_in2_pixel_clk;
 
 
   BUFG clkout2_buf
-   (.O   (clk_100m_o),
-    .I   (clk_100m_o_pixel_clk));
+   (.O   (clk_123m),
+    .I   (clk_123m_pixel_clk));
 
 
 

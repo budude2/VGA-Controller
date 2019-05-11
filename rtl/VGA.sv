@@ -11,13 +11,12 @@ module VGA(
     output logic [3:0] VGA_B
     );
 
-logic dValid_h, dValid_v, pixelClk, mbClk, locked_i, hclk_i, vclk_i, dispValid, dispValid_q;
-logic hclk_q, vclk_q;
+logic dValid_h, dValid_v, pixelClk, clk_123m, locked_i, dispValid, dispValid_q;
+logic hclk_i, vclk_i, hclk_q, vclk_q;
 logic [9:0] xCor, yCor;
 logic [18:0] addr;
-logic [31:0] addrBram;
+logic [31:0] addrBram, bramData;
 logic [2:0] addrSel, addrSel_q;
-logic [31:0] bramData;
 logic [3:0] vidData;
 
 clockGen pixelClkGen
@@ -25,7 +24,7 @@ clockGen pixelClkGen
     .clk_100m(clk_100m),
     .reset(reset),
     .clk_25m(pixelClk),
-    .clk_100m_o(mbClk),
+    .clk_123m(clk_123m),
     .locked(locked_i)
 );
 
@@ -43,7 +42,7 @@ vgaClk vgaTiming
 
 assign addr         = xCor + 640 * yCor;
 assign dispValid    = dValid_h & dValid_v;
-assign addrBram     = {0, addr[18:1]};
+assign addrBram     = {14'b00000000000000, addr[18:1]};
 assign addrSel      = addr % 8;
 
 microblaze_wrapper controller
@@ -52,13 +51,10 @@ microblaze_wrapper controller
     .bram_clk(pixelClk),
     .bram_dout(bramData),
     .bram_en(dispValid),
-    .clk_100MHz(mbClk),
+    .clk_123m(clk_123m),
     .locked(locked_i),
     .rst(reset)
 );
-
-//assign vidData = bramData[(addrSel << 2) +: 4];
-//assign vidData = bramData[addrSel * 4 +: 4];
 
 always_comb begin
     case(addrSel_q)

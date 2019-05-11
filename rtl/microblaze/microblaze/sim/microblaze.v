@@ -1,7 +1,7 @@
 //Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 //--------------------------------------------------------------------------------
 //Tool Version: Vivado v.2018.3 (win64) Build 2405991 Thu Dec  6 23:38:27 MST 2018
-//Date        : Fri May 10 15:34:20 2019
+//Date        : Fri May 10 22:08:37 2019
 //Host        : DESKTOP-KBPHQS1 running 64-bit major release  (build 9200)
 //Command     : generate_target microblaze.bd
 //Design      : microblaze
@@ -294,7 +294,7 @@ module microblaze
     bram_dout,
     bram_en,
     bram_rst,
-    clk_100MHz,
+    clk_123m,
     locked,
     rst);
   (* X_INTERFACE_INFO = "xilinx.com:signal:data:1.0 DATA.BRAM_ADDR DATA" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME DATA.BRAM_ADDR, LAYERED_METADATA undef" *) input [31:0]bram_addr;
@@ -302,7 +302,7 @@ module microblaze
   (* X_INTERFACE_INFO = "xilinx.com:signal:data:1.0 DATA.BRAM_DOUT DATA" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME DATA.BRAM_DOUT, LAYERED_METADATA undef" *) output [31:0]bram_dout;
   (* X_INTERFACE_INFO = "xilinx.com:signal:data:1.0 DATA.BRAM_EN DATA" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME DATA.BRAM_EN, LAYERED_METADATA undef" *) input bram_en;
   (* X_INTERFACE_INFO = "xilinx.com:signal:reset:1.0 RST.BRAM_RST RST" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME RST.BRAM_RST, INSERT_VIP 0, POLARITY ACTIVE_HIGH" *) input bram_rst;
-  (* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 CLK.CLK_100MHZ CLK" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME CLK.CLK_100MHZ, CLK_DOMAIN microblaze_clk_100MHz, FREQ_HZ 100000000, INSERT_VIP 0, PHASE 0.000" *) input clk_100MHz;
+  (* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 CLK.CLK_123M CLK" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME CLK.CLK_123M, CLK_DOMAIN microblaze_clk_100MHz, FREQ_HZ 100000000, INSERT_VIP 0, PHASE 0.000" *) input clk_123m;
   (* X_INTERFACE_INFO = "xilinx.com:signal:clockenable:1.0 CE.LOCKED CE" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME CE.LOCKED, POLARITY ACTIVE_LOW" *) input locked;
   (* X_INTERFACE_INFO = "xilinx.com:signal:reset:1.0 RST.RST RST" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME RST.RST, INSERT_VIP 0, POLARITY ACTIVE_HIGH" *) input rst;
 
@@ -419,7 +419,7 @@ module microblaze
   assign bram_en_1 = bram_en;
   assign brst_1 = bram_rst;
   assign locked_1 = locked;
-  assign microblaze_0_Clk = clk_100MHz;
+  assign microblaze_0_Clk = clk_123m;
   assign rst_1 = rst;
   (* BMM_INFO_ADDRESS_SPACE = "byte  0xC0000000 32 > microblaze blk_mem_gen_0" *) 
   (* KEEP_HIERARCHY = "yes" *) 

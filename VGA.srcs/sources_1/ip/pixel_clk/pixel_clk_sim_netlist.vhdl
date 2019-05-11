@@ -1,7 +1,7 @@
 -- Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2018.3 (win64) Build 2405991 Thu Dec  6 23:38:27 MST 2018
--- Date        : Fri May 10 16:47:52 2019
+-- Date        : Fri May 10 21:57:42 2019
 -- Host        : DESKTOP-KBPHQS1 running 64-bit major release  (build 9200)
 -- Command     : write_vhdl -force -mode funcsim
 --               C:/Users/xtjac/School/VGA-Controller/VGA.srcs/sources_1/ip/pixel_clk/pixel_clk_sim_netlist.vhdl
@@ -17,7 +17,7 @@ use UNISIM.VCOMPONENTS.ALL;
 entity pixel_clk_pixel_clk_clk_wiz is
   port (
     clk_25m : out STD_LOGIC;
-    clk_100m_o : out STD_LOGIC;
+    clk_123m : out STD_LOGIC;
     reset : in STD_LOGIC;
     locked : out STD_LOGIC;
     clk_100m : in STD_LOGIC
@@ -27,8 +27,8 @@ entity pixel_clk_pixel_clk_clk_wiz is
 end pixel_clk_pixel_clk_clk_wiz;
 
 architecture STRUCTURE of pixel_clk_pixel_clk_clk_wiz is
-  signal clk_100m_o_pixel_clk : STD_LOGIC;
   signal clk_100m_pixel_clk : STD_LOGIC;
+  signal clk_123m_pixel_clk : STD_LOGIC;
   signal clk_25m_pixel_clk : STD_LOGIC;
   signal clkfbout_buf_pixel_clk : STD_LOGIC;
   signal clkfbout_pixel_clk : STD_LOGIC;
@@ -80,8 +80,8 @@ clkout1_buf: unisim.vcomponents.BUFG
     );
 clkout2_buf: unisim.vcomponents.BUFG
      port map (
-      I => clk_100m_o_pixel_clk,
-      O => clk_100m_o
+      I => clk_123m_pixel_clk,
+      O => clk_123m
     );
 mmcm_adv_inst: unisim.vcomponents.MMCME2_ADV
     generic map(
@@ -145,7 +145,7 @@ mmcm_adv_inst: unisim.vcomponents.MMCME2_ADV
       CLKINSTOPPED => NLW_mmcm_adv_inst_CLKINSTOPPED_UNCONNECTED,
       CLKOUT0 => clk_25m_pixel_clk,
       CLKOUT0B => NLW_mmcm_adv_inst_CLKOUT0B_UNCONNECTED,
-      CLKOUT1 => clk_100m_o_pixel_clk,
+      CLKOUT1 => clk_123m_pixel_clk,
       CLKOUT1B => NLW_mmcm_adv_inst_CLKOUT1B_UNCONNECTED,
       CLKOUT2 => NLW_mmcm_adv_inst_CLKOUT2_UNCONNECTED,
       CLKOUT2B => NLW_mmcm_adv_inst_CLKOUT2B_UNCONNECTED,
@@ -177,7 +177,7 @@ use UNISIM.VCOMPONENTS.ALL;
 entity pixel_clk is
   port (
     clk_25m : out STD_LOGIC;
-    clk_100m_o : out STD_LOGIC;
+    clk_123m : out STD_LOGIC;
     reset : in STD_LOGIC;
     locked : out STD_LOGIC;
     clk_100m : in STD_LOGIC
@@ -191,7 +191,7 @@ begin
 inst: entity work.pixel_clk_pixel_clk_clk_wiz
      port map (
       clk_100m => clk_100m,
-      clk_100m_o => clk_100m_o,
+      clk_123m => clk_123m,
       clk_25m => clk_25m,
       locked => locked,
       reset => reset

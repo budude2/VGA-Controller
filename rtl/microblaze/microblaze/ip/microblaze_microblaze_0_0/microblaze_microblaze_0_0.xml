@@ -13831,8 +13831,8 @@
         <spirit:name>local_memory_map</spirit:name>
         <spirit:addressBlock>
           <spirit:name>microblaze_0</spirit:name>
-          <spirit:baseAddress spirit:format="long">3221225472</spirit:baseAddress>
-          <spirit:range spirit:format="long">262144</spirit:range>
+          <spirit:baseAddress spirit:format="long">0</spirit:baseAddress>
+          <spirit:range spirit:format="long">32768</spirit:range>
           <spirit:width spirit:format="long">32</spirit:width>
           <spirit:parameters>
             <spirit:parameter>
@@ -13849,15 +13849,15 @@
             </spirit:parameter>
             <spirit:parameter>
               <spirit:name>controlpaths</spirit:name>
-              <spirit:value spirit:id="ADDRSPACE_ADDRBLOCKPARAM_VALUE.DATA.LOCAL_MEMORY_MAP.MICROBLAZE_0.controlpaths">axi_bram_ctrl_0=blk_mem_gen_0</spirit:value>
+              <spirit:value spirit:id="ADDRSPACE_ADDRBLOCKPARAM_VALUE.DATA.LOCAL_MEMORY_MAP.MICROBLAZE_0.controlpaths">microblaze_0_local_memory/dlmb_bram_if_cntlr=microblaze_0_local_memory/lmb_bram</spirit:value>
             </spirit:parameter>
             <spirit:parameter>
               <spirit:name>memorytypename</spirit:name>
-              <spirit:value spirit:id="ADDRSPACE_ADDRBLOCKPARAM_VALUE.DATA.LOCAL_MEMORY_MAP.MICROBLAZE_0.memorytypename">blk_mem_gen_0_MEM_DEVICE</spirit:value>
+              <spirit:value spirit:id="ADDRSPACE_ADDRBLOCKPARAM_VALUE.DATA.LOCAL_MEMORY_MAP.MICROBLAZE_0.memorytypename">microblaze_0_local_memory_lmb_bram_MEM_DEVICE</spirit:value>
             </spirit:parameter>
             <spirit:parameter>
               <spirit:name>simmemfile</spirit:name>
-              <spirit:value spirit:id="ADDRSPACE_ADDRBLOCKPARAM_VALUE.DATA.LOCAL_MEMORY_MAP.MICROBLAZE_0.simmemfile">microblaze_blk_mem_gen_0_0.mem</spirit:value>
+              <spirit:value spirit:id="ADDRSPACE_ADDRBLOCKPARAM_VALUE.DATA.LOCAL_MEMORY_MAP.MICROBLAZE_0.simmemfile">microblaze_lmb_bram_0.mem</spirit:value>
             </spirit:parameter>
           </spirit:parameters>
         </spirit:addressBlock>
@@ -13895,8 +13895,8 @@
         </spirit:addressBlock>
         <spirit:addressBlock>
           <spirit:name>microblaze_2</spirit:name>
-          <spirit:baseAddress spirit:format="long">0</spirit:baseAddress>
-          <spirit:range spirit:format="long">32768</spirit:range>
+          <spirit:baseAddress spirit:format="long">3221225472</spirit:baseAddress>
+          <spirit:range spirit:format="long">262144</spirit:range>
           <spirit:width spirit:format="long">32</spirit:width>
           <spirit:parameters>
             <spirit:parameter>
@@ -13909,19 +13909,19 @@
             </spirit:parameter>
             <spirit:parameter>
               <spirit:name>workflow</spirit:name>
-              <spirit:value spirit:id="ADDRSPACE_ADDRBLOCKPARAM_VALUE.DATA.LOCAL_MEMORY_MAP.MICROBLAZE_2.workflow">simulation</spirit:value>
+              <spirit:value spirit:id="ADDRSPACE_ADDRBLOCKPARAM_VALUE.DATA.LOCAL_MEMORY_MAP.MICROBLAZE_2.workflow">implementation</spirit:value>
             </spirit:parameter>
             <spirit:parameter>
               <spirit:name>controlpaths</spirit:name>
-              <spirit:value spirit:id="ADDRSPACE_ADDRBLOCKPARAM_VALUE.DATA.LOCAL_MEMORY_MAP.MICROBLAZE_2.controlpaths">microblaze_0_local_memory/dlmb_bram_if_cntlr=microblaze_0_local_memory/lmb_bram</spirit:value>
+              <spirit:value spirit:id="ADDRSPACE_ADDRBLOCKPARAM_VALUE.DATA.LOCAL_MEMORY_MAP.MICROBLAZE_2.controlpaths">axi_bram_ctrl_0=blk_mem_gen_0</spirit:value>
             </spirit:parameter>
             <spirit:parameter>
               <spirit:name>memorytypename</spirit:name>
-              <spirit:value spirit:id="ADDRSPACE_ADDRBLOCKPARAM_VALUE.DATA.LOCAL_MEMORY_MAP.MICROBLAZE_2.memorytypename">microblaze_0_local_memory_lmb_bram_MEM_DEVICE</spirit:value>
+              <spirit:value spirit:id="ADDRSPACE_ADDRBLOCKPARAM_VALUE.DATA.LOCAL_MEMORY_MAP.MICROBLAZE_2.memorytypename"/>
             </spirit:parameter>
             <spirit:parameter>
               <spirit:name>simmemfile</spirit:name>
-              <spirit:value spirit:id="ADDRSPACE_ADDRBLOCKPARAM_VALUE.DATA.LOCAL_MEMORY_MAP.MICROBLAZE_2.simmemfile">microblaze_lmb_bram_0.mem</spirit:value>
+              <spirit:value spirit:id="ADDRSPACE_ADDRBLOCKPARAM_VALUE.DATA.LOCAL_MEMORY_MAP.MICROBLAZE_2.simmemfile"/>
             </spirit:parameter>
           </spirit:parameters>
         </spirit:addressBlock>
@@ -13941,7 +13941,7 @@
             </spirit:parameter>
             <spirit:parameter>
               <spirit:name>workflow</spirit:name>
-              <spirit:value spirit:id="ADDRSPACE_ADDRBLOCKPARAM_VALUE.DATA.LOCAL_MEMORY_MAP.MICROBLAZE_3.workflow">implementation</spirit:value>
+              <spirit:value spirit:id="ADDRSPACE_ADDRBLOCKPARAM_VALUE.DATA.LOCAL_MEMORY_MAP.MICROBLAZE_3.workflow">simulation</spirit:value>
             </spirit:parameter>
             <spirit:parameter>
               <spirit:name>controlpaths</spirit:name>
@@ -13949,11 +13949,11 @@
             </spirit:parameter>
             <spirit:parameter>
               <spirit:name>memorytypename</spirit:name>
-              <spirit:value spirit:id="ADDRSPACE_ADDRBLOCKPARAM_VALUE.DATA.LOCAL_MEMORY_MAP.MICROBLAZE_3.memorytypename"/>
+              <spirit:value spirit:id="ADDRSPACE_ADDRBLOCKPARAM_VALUE.DATA.LOCAL_MEMORY_MAP.MICROBLAZE_3.memorytypename">blk_mem_gen_0_MEM_DEVICE</spirit:value>
             </spirit:parameter>
             <spirit:parameter>
               <spirit:name>simmemfile</spirit:name>
-              <spirit:value spirit:id="ADDRSPACE_ADDRBLOCKPARAM_VALUE.DATA.LOCAL_MEMORY_MAP.MICROBLAZE_3.simmemfile"/>
+              <spirit:value spirit:id="ADDRSPACE_ADDRBLOCKPARAM_VALUE.DATA.LOCAL_MEMORY_MAP.MICROBLAZE_3.simmemfile">microblaze_blk_mem_gen_0_0.mem</spirit:value>
             </spirit:parameter>
           </spirit:parameters>
         </spirit:addressBlock>
@@ -13999,7 +13999,7 @@
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>9:445f10e3</spirit:value>
+            <spirit:value>9:df8b3b7f</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -14013,11 +14013,11 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>GENtimestamp</spirit:name>
-            <spirit:value>Fri May 10 20:34:20 UTC 2019</spirit:value>
+            <spirit:value>Sat May 11 03:08:38 UTC 2019</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>9:445f10e3</spirit:value>
+            <spirit:value>9:df8b3b7f</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -14033,11 +14033,11 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>GENtimestamp</spirit:name>
-            <spirit:value>Fri May 10 20:34:20 UTC 2019</spirit:value>
+            <spirit:value>Sat May 11 03:08:38 UTC 2019</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>9:445f10e3</spirit:value>
+            <spirit:value>9:df8b3b7f</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -14057,7 +14057,7 @@
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>9:82c22dda</spirit:value>
+            <spirit:value>9:2f82ad8c</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -14073,11 +14073,11 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>GENtimestamp</spirit:name>
-            <spirit:value>Fri May 10 20:34:20 UTC 2019</spirit:value>
+            <spirit:value>Sat May 11 03:08:38 UTC 2019</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>9:82c22dda</spirit:value>
+            <spirit:value>9:2f82ad8c</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -14091,11 +14091,11 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>GENtimestamp</spirit:name>
-            <spirit:value>Fri May 10 20:35:49 UTC 2019</spirit:value>
+            <spirit:value>Sat May 11 03:10:10 UTC 2019</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>9:445f10e3</spirit:value>
+            <spirit:value>9:df8b3b7f</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -24623,7 +24623,7 @@
       <spirit:modelParameter spirit:dataType="integer">
         <spirit:name>C_USE_BRANCH_TARGET_CACHE</spirit:name>
         <spirit:displayName>Enable Branch Target Cache</spirit:displayName>
-        <spirit:value spirit:format="long" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.C_USE_BRANCH_TARGET_CACHE" spirit:choiceRef="choice_pairs_4873554b">0</spirit:value>
+        <spirit:value spirit:format="long" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.C_USE_BRANCH_TARGET_CACHE" spirit:choiceRef="choice_pairs_4873554b">1</spirit:value>
         <spirit:vendorExtensions>
           <xilinx:parameterInfo>
             <xilinx:enablement>
@@ -25453,6 +25453,11 @@
       <spirit:enumeration spirit:text="FAST">2</spirit:enumeration>
     </spirit:choice>
     <spirit:choice>
+      <spirit:name>choice_pairs_dcf49a2f</spirit:name>
+      <spirit:enumeration spirit:text="PERFORMANCE">0</spirit:enumeration>
+      <spirit:enumeration spirit:text="FREQUENCY">2</spirit:enumeration>
+    </spirit:choice>
+    <spirit:choice>
       <spirit:name>choice_pairs_e7a1eb81</spirit:name>
       <spirit:enumeration spirit:text="DEFAULT">0</spirit:enumeration>
       <spirit:enumeration spirit:text="8_ENTRIES">1</spirit:enumeration>
@@ -25745,7 +25750,7 @@ It is highly recommended to create MicroBlaze systems within Vivado IP Integrato
     <spirit:parameter>
       <spirit:name>C_AREA_OPTIMIZED</spirit:name>
       <spirit:displayName>Select implementation optimization</spirit:displayName>
-      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.C_AREA_OPTIMIZED" spirit:choiceRef="choice_pairs_3eb333f8" spirit:order="1080" spirit:configGroups="1 Optimization">2</spirit:value>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.C_AREA_OPTIMIZED" spirit:choiceRef="choice_pairs_dcf49a2f" spirit:order="1080" spirit:configGroups="1 Optimization">2</spirit:value>
       <spirit:vendorExtensions>
         <xilinx:parameterInfo>
           <xilinx:enablement>
@@ -27981,7 +27986,7 @@ It is highly recommended to create MicroBlaze systems within Vivado IP Integrato
     <spirit:parameter>
       <spirit:name>C_USE_BRANCH_TARGET_CACHE</spirit:name>
       <spirit:displayName>Enable Branch Target Cache</spirit:displayName>
-      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.C_USE_BRANCH_TARGET_CACHE" spirit:choiceRef="choice_pairs_4873554b" spirit:order="1090" spirit:configGroups="1 Optimization">0</spirit:value>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.C_USE_BRANCH_TARGET_CACHE" spirit:choiceRef="choice_pairs_4873554b" spirit:order="1090" spirit:configGroups="1 Optimization">1</spirit:value>
       <spirit:vendorExtensions>
         <xilinx:parameterInfo>
           <xilinx:enablement>
@@ -28056,6 +28061,7 @@ It is highly recommended to create MicroBlaze systems within Vivado IP Integrato
         <xilinx:configElementInfo xilinx:referenceId="PARAM_VALUE.C_M_AXI_DC_USER_SIGNALS" xilinx:valueSource="propagated"/>
         <xilinx:configElementInfo xilinx:referenceId="PARAM_VALUE.C_M_AXI_IC_USER_SIGNALS" xilinx:valueSource="propagated"/>
         <xilinx:configElementInfo xilinx:referenceId="PARAM_VALUE.C_USE_BARREL" xilinx:valueSource="user"/>
+        <xilinx:configElementInfo xilinx:referenceId="PARAM_VALUE.C_USE_BRANCH_TARGET_CACHE" xilinx:valueSource="user"/>
         <xilinx:configElementInfo xilinx:referenceId="PARAM_VALUE.C_USE_DIV" xilinx:valueSource="user"/>
         <xilinx:configElementInfo xilinx:referenceId="PARAM_VALUE.C_USE_EXT_BRK" xilinx:valueSource="propagated"/>
         <xilinx:configElementInfo xilinx:referenceId="PARAM_VALUE.C_USE_EXT_NM_BRK" xilinx:valueSource="propagated"/>

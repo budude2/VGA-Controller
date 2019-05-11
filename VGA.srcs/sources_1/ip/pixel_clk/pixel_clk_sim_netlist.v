@@ -1,7 +1,7 @@
 // Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2018.3 (win64) Build 2405991 Thu Dec  6 23:38:27 MST 2018
-// Date        : Fri May 10 16:47:52 2019
+// Date        : Fri May 10 21:57:42 2019
 // Host        : DESKTOP-KBPHQS1 running 64-bit major release  (build 9200)
 // Command     : write_verilog -force -mode funcsim
 //               C:/Users/xtjac/School/VGA-Controller/VGA.srcs/sources_1/ip/pixel_clk/pixel_clk_sim_netlist.v
@@ -15,25 +15,25 @@
 (* NotValidForBitStream *)
 module pixel_clk
    (clk_25m,
-    clk_100m_o,
+    clk_123m,
     reset,
     locked,
     clk_100m);
   output clk_25m;
-  output clk_100m_o;
+  output clk_123m;
   input reset;
   output locked;
   input clk_100m;
 
   (* IBUF_LOW_PWR *) wire clk_100m;
-  wire clk_100m_o;
+  wire clk_123m;
   wire clk_25m;
   wire locked;
   wire reset;
 
   pixel_clk_pixel_clk_clk_wiz inst
        (.clk_100m(clk_100m),
-        .clk_100m_o(clk_100m_o),
+        .clk_123m(clk_123m),
         .clk_25m(clk_25m),
         .locked(locked),
         .reset(reset));
@@ -42,20 +42,20 @@ endmodule
 (* ORIG_REF_NAME = "pixel_clk_clk_wiz" *) 
 module pixel_clk_pixel_clk_clk_wiz
    (clk_25m,
-    clk_100m_o,
+    clk_123m,
     reset,
     locked,
     clk_100m);
   output clk_25m;
-  output clk_100m_o;
+  output clk_123m;
   input reset;
   output locked;
   input clk_100m;
 
   wire clk_100m;
-  wire clk_100m_o;
-  wire clk_100m_o_pixel_clk;
   wire clk_100m_pixel_clk;
+  wire clk_123m;
+  wire clk_123m_pixel_clk;
   wire clk_25m;
   wire clk_25m_pixel_clk;
   wire clkfbout_buf_pixel_clk;
@@ -97,8 +97,8 @@ module pixel_clk_pixel_clk_clk_wiz
         .O(clk_25m));
   (* BOX_TYPE = "PRIMITIVE" *) 
   BUFG clkout2_buf
-       (.I(clk_100m_o_pixel_clk),
-        .O(clk_100m_o));
+       (.I(clk_123m_pixel_clk),
+        .O(clk_123m));
   (* BOX_TYPE = "PRIMITIVE" *) 
   MMCME2_ADV #(
     .BANDWIDTH("OPTIMIZED"),
@@ -160,7 +160,7 @@ module pixel_clk_pixel_clk_clk_wiz
         .CLKINSTOPPED(NLW_mmcm_adv_inst_CLKINSTOPPED_UNCONNECTED),
         .CLKOUT0(clk_25m_pixel_clk),
         .CLKOUT0B(NLW_mmcm_adv_inst_CLKOUT0B_UNCONNECTED),
-        .CLKOUT1(clk_100m_o_pixel_clk),
+        .CLKOUT1(clk_123m_pixel_clk),
         .CLKOUT1B(NLW_mmcm_adv_inst_CLKOUT1B_UNCONNECTED),
         .CLKOUT2(NLW_mmcm_adv_inst_CLKOUT2_UNCONNECTED),
         .CLKOUT2B(NLW_mmcm_adv_inst_CLKOUT2B_UNCONNECTED),

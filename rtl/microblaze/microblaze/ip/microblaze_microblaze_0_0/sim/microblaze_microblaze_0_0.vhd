@@ -858,7 +858,7 @@ BEGIN
       C_MMU_TLB_ACCESS => 3,
       C_MMU_ZONES => 2,
       C_MMU_PRIVILEGED_INSTR => 0,
-      C_USE_BRANCH_TARGET_CACHE => 0,
+      C_USE_BRANCH_TARGET_CACHE => 1,
       C_BRANCH_TARGET_CACHE_SIZE => 0,
       C_PC_WIDTH => 32,
       C_PVR => 0,

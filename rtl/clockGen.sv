@@ -4,7 +4,7 @@ module clockGen(
     input logic clk_100m,
     input logic reset,
     output logic clk_25m,
-    output logic clk_100m_o,
+    output logic clk_123m,
     output logic locked
     );
 
@@ -28,7 +28,7 @@ pixel_clk pixel_clk_gen
 
     // Clock out ports
     .clk_25m(clk_25m_i),  // output clk_25m
-    .clk_100m_o(clk_100m_o),     // output clk_100m_o
+    .clk_123m(clk_123m),     // output clk_100m_o
 
     // Status and control signals
     .reset(reset),          // input reset
