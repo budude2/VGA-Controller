@@ -30,10 +30,6 @@ create_waiver -internal -quiet -user microblaze -type DRC -id DPOP-4 -descriptio
   -objects [get_cells -hierarchical *DSP48E1_I1] \
   -objects [get_pins -quiet -filter {REF_PIN_NAME=~*OUT*} -of [get_cells -hierarchical *DSP48E1_I1]]
 
-# Waiver for LUT instantiation
-create_waiver -internal -quiet -user microblaze -type DRC -id PDCN-1569 -description "Valid LUT-6 instantiation" \
-  -objects [get_cells -quiet -hierarchical -filter {HLUTNM=~LUT6_2} *LUT*]
-
 # Waiver for asynchronous reset 
 create_waiver -internal -quiet -user microblaze -type CDC -id CDC-10 -description "Asynchronous reset" \
   -to [get_pins -quiet "MicroBlaze_Core_I/Reset_DFF/Synchronize.use_sync_reset.sync_reg\[1\]/D"]
@@ -217,17 +213,5 @@ create_waiver -internal -quiet -user microblaze -type CDC -id CDC-15 -descriptio
   -from [get_pins -quiet MicroBlaze_Core_I/*.Core/*Debug_Logic.Master_Core.Debug*/Using_*_Breakpoints.All_*\[*\].*/*Compare\[*\].*/*/CLK] \
   -to   *PIN
 create_waiver -internal -quiet -user microblaze -type CDC -id CDC-1 -description "Debug protocol ensures stable signals" \
-  -from [get_pins -quiet MicroBlaze_Core_I/*.Core/*Debug_Logic.Master_Core.Debug*/Area_Debug_Control.Stop_Instr_Fetch*/*/C] \
+  -from [get_pins -quiet MicroBlaze_Core_I/*.Core/*Debug_Logic.Master_Core.Debug*/*Debug_Control.dbg_stop_instr_fetch_nohalt_reg/C] \
   -to   [get_pins -quiet MicroBlaze_Core_I/*.Core/*Debug_Logic.Master_Core.Debug*/Serial_Dbg_Intf.sync_stop_CPU/Single_Synchronize.use_async_reset.sync_reg/D]
-create_waiver -internal -quiet -user microblaze -type CDC -id CDC-7 -description "Debug protocol ensures stable signals" \
-  -from [get_pins -quiet MicroBlaze_Core_I/*.Core/*Debug_Logic.Master_Core.Debug*/Area_Debug_Control.force_stop_cmd_hold_reg/C] \
-  -to   [get_pins -quiet MicroBlaze_Core_I/*.Core/*Debug_Logic.Master_Core.Debug*/Serial_Dbg_Intf.force_stop_TClk_reg/CLR]
-create_waiver -internal -quiet -user microblaze -type CDC -id CDC-7 -description "Debug protocol ensures stable signals" \
-  -from [get_pins -quiet MicroBlaze_Core_I/*.Core/*Debug_Logic.Master_Core.Debug*/Area_Debug_Control.normal_stop_cmd_hold_reg/C] \
-  -to   [get_pins -quiet MicroBlaze_Core_I/*.Core/*Debug_Logic.Master_Core.Debug*/Serial_Dbg_Intf.normal_stop_TClk_reg/CLR]
-create_waiver -internal -quiet -user microblaze -type CDC -id CDC-15 -description "Debug protocol ensures stable signals" \
-  -from [get_pins -quiet MicroBlaze_Core_I/*.Core/*Debug_Logic.Master_Core.Debug*/Area_Debug_Control.force_stop_cmd_hold_reg/C] \
-  -to   [get_pins -quiet MicroBlaze_Core_I/*.Core/*Debug_Logic.Master_Core.Debug*/Serial_Dbg_Intf.force_stop_TClk_reg/CLR]
-create_waiver -internal -quiet -user microblaze -type CDC -id CDC-15 -description "Debug protocol ensures stable signals" \
-  -from [get_pins -quiet MicroBlaze_Core_I/*.Core/*Debug_Logic.Master_Core.Debug*/Area_Debug_Control.normal_stop_cmd_hold_reg/C] \
-  -to   [get_pins -quiet MicroBlaze_Core_I/*.Core/*Debug_Logic.Master_Core.Debug*/Serial_Dbg_Intf.normal_stop_TClk_reg/CLR]

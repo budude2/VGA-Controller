@@ -99,3 +99,18 @@ uint8_t drawHorzLine(uint16_t x1, uint16_t x2, uint16_t y, uint8_t value, _Bool 
 		return 0;
 	}
 }
+
+uint8_t drawVertLine(uint16_t y1, uint16_t y2, uint16_t x, uint8_t value, _Bool overwrite)
+{
+	uint8_t result;
+
+	for(uint16_t idx = y1; idx < y2; idx++)
+	{
+		if(drawPixel(x, idx, value, overwrite))
+		{
+			return 1;
+		}
+	}
+
+	return 0;
+}

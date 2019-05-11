@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
-<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Mon Apr 29 17:41:23 2019" VIVADOVERSION="2018.3">
+<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Fri May 10 15:34:20 2019" VIVADOVERSION="2018.3">
 
   <SYSTEMINFO ARCH="artix7" BOARD="digilentinc.com:nexys4_ddr:part0:1.1" DEVICE="7a100t" NAME="microblaze" PACKAGE="csg324" SPEEDGRADE="-1"/>
 
@@ -816,7 +816,7 @@
             <CONNECTION INSTANCE="axi_bram_ctrl_0" PORT="bram_rddata_a"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" NAME="clkb" SIGIS="clk" SIGNAME="External_Ports_bram_clk">
+        <PORT CLKFREQUENCY="25173000" DIR="I" NAME="clkb" SIGIS="clk" SIGNAME="External_Ports_bram_clk">
           <CONNECTIONS>
             <CONNECTION INSTANCE="External_Ports" PORT="bram_clk"/>
           </CONNECTIONS>
@@ -1024,7 +1024,7 @@
         <PARAMETER NAME="C_DADDR_SIZE" VALUE="32"/>
         <PARAMETER NAME="C_INSTANCE" VALUE="microblaze_microblaze_0_0"/>
         <PARAMETER NAME="C_AVOID_PRIMITIVES" VALUE="0"/>
-        <PARAMETER NAME="C_AREA_OPTIMIZED" VALUE="1"/>
+        <PARAMETER NAME="C_AREA_OPTIMIZED" VALUE="2"/>
         <PARAMETER NAME="C_OPTIMIZATION" VALUE="0"/>
         <PARAMETER NAME="C_INTERCONNECT" VALUE="2"/>
         <PARAMETER NAME="C_BASE_VECTORS" VALUE="0x0000000000000000"/>
@@ -1044,7 +1044,7 @@
         <PARAMETER NAME="C_USE_MSR_INSTR" VALUE="1"/>
         <PARAMETER NAME="C_USE_PCMP_INSTR" VALUE="1"/>
         <PARAMETER NAME="C_USE_BARREL" VALUE="1"/>
-        <PARAMETER NAME="C_USE_DIV" VALUE="0"/>
+        <PARAMETER NAME="C_USE_DIV" VALUE="1"/>
         <PARAMETER NAME="C_USE_HW_MUL" VALUE="1"/>
         <PARAMETER NAME="C_USE_FPU" VALUE="0"/>
         <PARAMETER NAME="C_USE_REORDER_INSTR" VALUE="0"/>

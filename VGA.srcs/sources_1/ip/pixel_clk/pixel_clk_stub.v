@@ -1,10 +1,10 @@
 // Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2018.3 (win64) Build 2405991 Thu Dec  6 23:38:27 MST 2018
-// Date        : Mon Apr 29 17:20:07 2019
-// Host        : DESKTOP-S0CCCTL running 64-bit major release  (build 9200)
+// Date        : Fri May 10 16:47:52 2019
+// Host        : DESKTOP-KBPHQS1 running 64-bit major release  (build 9200)
 // Command     : write_verilog -force -mode synth_stub
-//               C:/Users/Jacob/School/VGA-Controller/VGA.srcs/sources_1/ip/pixel_clk/pixel_clk_stub.v
+//               C:/Users/xtjac/School/VGA-Controller/VGA.srcs/sources_1/ip/pixel_clk/pixel_clk_stub.v
 // Design      : pixel_clk
 // Purpose     : Stub declaration of top-level module interface
 // Device      : xc7a100tcsg324-1

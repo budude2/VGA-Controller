@@ -9,6 +9,7 @@
 #include "xbram.h"
 #include <stdio.h>
 #include "drawFunctions.h"
+#include "colorMappings.h"
 #include <stdbool.h>
 
 #define BRAM_DEVICE_ID		XPAR_BRAM_0_DEVICE_ID
@@ -46,13 +47,25 @@ int main(void)
 
 	for(int idx = 0; idx < 479; idx++)
 	{
-		drawHorzLine(0 + idx, 639 - idx, 0 + idx, 0xA, true);
+		drawHorzLine(0 + idx, 639 - idx, 0 + idx, BLUE, true);
 	}
 
 	for(int idx = 0; idx < 479; idx++)
 	{
-		drawHorzLine(0 + idx, 639 - idx, 479 - idx, 0x4, false);
+		drawHorzLine(0 + idx, 639 - idx, 479 - idx, GRAY, false);
 	}
+
+	for(int idx = 0; idx < 320; idx++)
+	{
+		drawVertLine(0 + idx, 480 - idx, idx, RED, false);
+	}
+
+	for(int idx = 0; idx < 320; idx++)
+	{
+		drawVertLine(0 + idx, 480 - idx, 640 - idx, GREEN, false);
+	}
+
+	for(;;);
 
 	return XST_SUCCESS;
 }
